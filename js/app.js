@@ -357,7 +357,7 @@ questionsContainer.addEventListener('click', function(e) {
         bubble.classList.add('active');
         studentAnswers[phase][qid] = val;
         
-        saveProgress(); // ☁️ Cloud Auto-Save
+        saveProgress();
     }
 });
 
@@ -373,18 +373,16 @@ btnNext.addEventListener('click', () => {
 
     if (currentPage < totalPages) {
         currentPage++;
-        saveProgress(); // ☁️ Cloud Auto-Save
+        saveProgress();
         renderPage(currentPage);
         window.scrollTo(0, 0); 
-    } else {
-        alert("Assessment Complete! Please click 'Execute Algorithm' on the right panel.");
     }
 });
 
 btnPrev.addEventListener('click', () => {
     if (currentPage > 1) {
         currentPage--;
-        saveProgress(); // ☁️ Cloud Auto-Save
+        saveProgress();
         renderPage(currentPage);
         window.scrollTo(0, 0);
     }
@@ -611,8 +609,17 @@ document.querySelectorAll('.tracker-header').forEach(header => {
 let currentGlobalResults = [];
 let currentGlobalRIASEC = [];
 
-document.getElementById('btn-calculate').addEventListener('click', async () => {
-    const studentGWA = parseFloat(document.getElementById('input-gwa').value) || 0;
+document.getElementById('btn-calculate').addEventListener('click', () => {
+    const rawGWA = document.getElementById('input-gwa').value;
+    const studentGWA = parseFloat(rawGWA);
+    
+    // 🚩 VALIDATION: Hard stop for invalid GWAs
+    if (!rawGWA || isNaN(studentGWA) || studentGWA > 100 || studentGWA < 60) {
+        alert("⚠️ INVALID GWA: Please enter a grade between 60 and 100. The system cannot calculate recommendations for out-of-range values.");
+        document.getElementById('input-gwa').focus();
+        return;
+    }
+
     const studentBudget = parseFloat(document.getElementById('input-budget').value) || Infinity;
     const studentStrand = document.getElementById('input-strand').value;
     const studentLocation = document.getElementById('input-location').value;
@@ -694,6 +701,10 @@ document.getElementById('btn-calculate').addEventListener('click', async () => {
     currentGlobalResults = eligiblePrograms;
     currentGlobalRIASEC = studentTopRIASEC;
 
+    // 🚩 1. SHOW RESULTS IMMEDIATELY (Zero latency for the student)
+    renderDashboard(eligiblePrograms);
+
+    // 🚩 2. PREPARE CLOUD DATA
     const fullID = document.getElementById('input-id-year').value + "-" + document.getElementById('input-id-num').value;
     const studentFName = document.getElementById('input-fname').value;
     const studentLName = document.getElementById('input-lname').value;
@@ -712,17 +723,45 @@ document.getElementById('btn-calculate').addEventListener('click', async () => {
         }))
     };
 
-    try {
-        await setDoc(doc(db, "results", fullID), assessmentResult);
-        console.log(`✅ Successfully saved ${fullID}'s results to Firebase!`);
-        
-        await clearProgress(); // ☁️ Delete cloud save once completed
-        
-    } catch (error) {
-        console.error("❌ Error saving to Firebase:", error);
-    }
+    setDoc(doc(db, "results", fullID), assessmentResult)
+        .then(() => {
+            console.log(`✅ Successfully saved ${fullID}'s results to Firebase!`);
+            clearProgress(); // ☁️ Delete local save once cloud sync is confirmed
+        })
+        .catch((error) => {
+            console.error("❌ Firebase Error:", error);
+            if (!navigator.onLine) {
+                console.warn("📡 OFFLINE MODE: Result stored locally by Service Worker. Will sync to Counselor Database upon reconnection.");
+            } else {
+                console.warn("⚠️ An error occurred while saving in the background.");
+            }
+        });
+});
 
-    renderDashboard(eligiblePrograms);
+const gwaInput = document.getElementById('input-gwa');
+
+gwaInput.addEventListener('input', function() {
+    // 1. Convert what they are typing into a number
+    let val = parseFloat(this.value);
+    
+    // 2. If it goes over 100, force it back to 100 instantly
+    if (val > 100) {
+        this.value = 100;
+    }
+    
+    // 3. Prevent negative numbers just in case
+    if (val < 0) {
+        this.value = 0;
+    }
+});
+
+// 4. When they click away from the box (blur), check the minimum
+gwaInput.addEventListener('blur', function() {
+    let val = parseFloat(this.value);
+    if (val > 0 && val < 70) {
+        alert("Note: GWA must be at least 70 for the system to process recommendations.");
+        this.value = ""; // Clear it so they have to try again
+    }
 });
 
 // ==========================================

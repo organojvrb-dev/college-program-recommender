@@ -55,7 +55,7 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">General Weighted Average (GWA)</label>
-                        <input type="number" id="input-gwa" class="form-control" placeholder="e.g., 88">
+                        <input type="number" id="input-gwa" min="60" max="100" step="0.01" class="form-control" placeholder="e.g., 88">
                     </div>
 
                     <div class="mb-4">
@@ -125,7 +125,7 @@
                             <p class="text-muted mb-4 px-md-5">All your responses have been successfully recorded. You are now ready to generate your personalized program recommendations.</p>
                             
                             <button class="btn btn-success btn-lg px-5 py-3 shadow fw-bold rounded-pill" id="btn-calculate">
-                                <i class="bi bi-cpu-fill me-2"></i>Execute Recommendation Algorithm
+                                <i class="bi bi-cpu-fill me-2"></i>Generate Recommendations
                             </button>
                         </div>
 
@@ -197,8 +197,8 @@
                 <div class="mb-4">
                     <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
                 </div>
-                <h1 class="display-5 fw-bold text-success mb-3">Algorithm Execution Complete</h1>
-                <p class="lead text-muted mb-4">The system has analyzed your profile and grouped the best matching programs.</p>
+                <h1 class="display-5 fw-bold text-success mb-3">Assessment Complete</h1>
+                <p class="lead text-muted mb-4">We’ve analyzed your profile and found the best matches for your future.</p>
                 
                 <div id="dashboard-results"></div>
 
