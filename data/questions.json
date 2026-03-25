@@ -1,0 +1,239 @@
+{
+  "phaseA_interests": [
+    {
+      "id": "INT_01", 
+      "text": "Build kitchen cabinets",
+      "trait": "Realistic" 
+    },
+    {
+      "id": "INT_02",
+      "text": "Develop a new medicine",
+      "trait": "Investigative"
+    },
+    { 
+      "id": "INT_03",
+      "text": "Write books or plays",
+      "trait": "Artistic"
+    },
+    {
+      "id": "INT_04",
+      "text": "Help people with personal or emotional problems",
+      "trait": "Social"
+    },
+    {
+      "id": "INT_05",
+      "text": "Manage a department within a large company",
+      "trait": "Enterprising"
+    },
+    {
+      "id": "INT_06",
+      "text": "Install software across computers on a large network",
+      "trait": "Realistic"
+    },
+    {
+      "id": "INT_07",
+      "text": "Repair household appliances",
+      "trait": "Realistic"
+    },
+    {
+      "id": "INT_08",
+      "text": "Study ways to reduce water pollution",
+      "trait": "Investigative"
+    },
+    {
+      "id": "INT_09",
+      "text": "Compose or arrange music",
+      "trait": "Artistic"
+    },
+    {
+      "id": "INT_10",
+      "text": "Give career guidance to people",
+      "trait": "Social"
+    },
+    {
+      "id": "INT_11",
+      "text": "Start your own business",
+      "trait": "Enterprising"
+    },
+    { 
+      "id": "INT_12", 
+      "text": "Operate a calculator", 
+      "trait": "Conventional" 
+    },
+    {
+      "id": "INT_13",
+      "text": "Assemble electronic parts",
+      "trait": "Realistic"
+    },
+    {
+      "id": "INT_14",
+      "text": "Conduct chemical experiments",
+      "trait": "Investigative"
+    },
+    {
+      "id": "INT_15",
+      "text": "Create special effects for movies",
+      "trait": "Artistic"
+    },
+    {
+      "id": "INT_16",
+      "text": "Perform rehabilitation therapy",
+      "trait": "Social"
+    },
+    {
+      "id": "INT_17",
+      "text": "Negotiate business contract",
+      "trait": "Enterprising"
+    },
+    {
+      "id": "INT_18",
+      "text": "Keep shipping and receiving records",
+      "trait": "Conventional"
+    },
+    {
+      "id": "INT_19",
+      "text": "Drive a truck to deliver packages to offices and homes",
+      "trait": "Realistic"
+    },
+    {
+      "id": "INT_20",
+      "text": "Examine blood samples using a microscope",
+      "trait": "Investigative"
+    },
+    {
+      "id": "INT_21",
+      "text": "Paint sets for plays", 
+      "trait": "Artistic" 
+    },
+    {
+      "id": "INT_22",
+      "text": "Do volunteer work at a non-profit organization",
+      "trait": "Social"
+    },
+    {
+      "id": "INT_23",
+      "text": "Market a new line of clothing",
+      "trait": "Enterprising"
+    },
+    {
+      "id": "INT_24",
+      "text": "Inventory supplies using hand-help computer",
+      "trait": "Conventional"
+    },
+    {
+      "id": "INT_25",
+      "text": "Test the quality of parts before shipment",
+      "trait": "Realistic"
+    },
+    {
+      "id": "INT_26",
+      "text": "Develop a way to better predict the weather",
+      "trait": "Investigative"
+    },
+    {
+      "id": "INT_27",
+      "text": "Write scripts for movies or television shows",
+      "trait": "Artistic"
+    },
+    { 
+      "id": "INT_28", 
+      "text": "Teach a high-school class", 
+      "trait": "Social" 
+    },
+    {
+      "id": "INT_29",
+      "text": "Sell merchandise at a department store",
+      "trait": "Enterprising"
+    },
+    {
+      "id": "INT_30",
+      "text": "Stamp, sort, and distribute mail for an organization",
+      "trait": "Conventional"
+    }
+  ],
+
+  "phaseB_basic_skills": [
+    {
+      "id": "BAS_01",
+      "text": "Understanding written sentences and paragraphs in work-related documents.",
+      "skill_id": "Reading Comprehension"
+    },
+    {
+      "id": "BAS_02",
+      "text": "Using mathematics to solve problems.",
+      "skill_id": "Mathematics"
+    },
+    {
+      "id": "BAS_03",
+      "text": "Giving full attention to what other people are saying and understanding their points.",
+      "skill_id": "Active Listening"
+    },
+    {
+      "id": "BAS_04",
+      "text": "Using scientific rules and methods to solve problems.",
+      "skill_id": "Science"
+    },
+    {
+      "id": "BAS_05",
+      "text": "Talking to others to convey information effectively.",
+      "skill_id": "Speaking"
+    },
+    {
+      "id": "BAS_06",
+      "text": "Communicating effectively in writing as appropriate for the audience.",
+      "skill_id": "Writing"
+    },
+    {
+      "id": "BAS_07",
+      "text": "Understanding the implications of new information for problem-solving and decision-making.",
+      "skill_id": "Active Learning"
+    },
+    {
+      "id": "BAS_08",
+      "text": "Using logic and reasoning to evaluate solutions and approaches.",
+      "skill_id": "Critical Thinking"
+    },
+    {
+      "id": "BAS_09",
+      "text": "Selecting and using appropriate methods for learning or teaching new things.",
+      "skill_id": "Learning Strategies"
+    },
+    {
+      "id": "BAS_10",
+      "text": "Monitoring performance to make improvements or take corrective action.",
+      "skill_id": "Monitoring"
+    }
+  ],
+
+  "phaseC_cross_skills": [
+    { "id": "CRS_01", "text": "Identifying complex problems and developing solutions.", "skill_id": "Complex Problem Solving" },
+
+    { "id": "CRS_02", "text": "Determining how money will be spent and accounting for expenditures.", "skill_id": "Management of Financial Resources" },
+    { "id": "CRS_03", "text": "Obtaining and managing the use of equipment and materials.", "skill_id": "Management of Material Resources" },
+    { "id": "CRS_04", "text": "Motivating and directing people as they work.", "skill_id": "Management of Personnel Resources" },
+    { "id": "CRS_05", "text": "Managing one's own time and the time of others.", "skill_id": "Time Management" },
+
+    { "id": "CRS_06", "text": "Adjusting actions in relation to others' actions.", "skill_id": "Coordination" },
+    { "id": "CRS_07", "text": "Teaching others how to do something.", "skill_id": "Instructing" },
+    { "id": "CRS_08", "text": "Bringing others together and reconciling differences.", "skill_id": "Negotiation" },
+    { "id": "CRS_09", "text": "Persuading others to change their minds or behavior.", "skill_id": "Persuasion" },
+    { "id": "CRS_10", "text": "Actively looking for ways to help people.", "skill_id": "Service Orientation" },
+    { "id": "CRS_11", "text": "Being aware of others' reactions and understanding them.", "skill_id": "Social Perceptiveness" },
+
+    { "id": "CRS_12", "text": "Considering costs and benefits to choose appropriate actions.", "skill_id": "Judgment and Decision Making" },
+    { "id": "CRS_13", "text": "Determining how a system should work and how changes affect outcomes.", "skill_id": "Systems Analysis" },
+    { "id": "CRS_14", "text": "Identifying measures to improve or correct system performance.", "skill_id": "Systems Evaluation" },
+
+    { "id": "CRS_15", "text": "Performing routine maintenance on equipment.", "skill_id": "Equipment Maintenance" },
+    { "id": "CRS_16", "text": "Determining the tools and equipment needed for a job.", "skill_id": "Equipment Selection" },
+    { "id": "CRS_17", "text": "Installing equipment, machines, or programs to meet specifications.", "skill_id": "Installation" },
+    { "id": "CRS_18", "text": "Controlling operations of equipment or systems.", "skill_id": "Operation and Control" },
+    { "id": "CRS_19", "text": "Analyzing needs and product requirements to create a design.", "skill_id": "Operations Analysis" },
+    { "id": "CRS_20", "text": "Monitoring systems to ensure proper operation.", "skill_id": "Operations Monitoring" },
+    { "id": "CRS_21", "text": "Writing computer programs for various purposes.", "skill_id": "Programming" },
+    { "id": "CRS_22", "text": "Conducting tests and inspections to evaluate quality.", "skill_id": "Quality Control Analysis" },
+    { "id": "CRS_23", "text": "Repairing machines or systems using appropriate tools.", "skill_id": "Repairing" },
+    { "id": "CRS_24", "text": "Generating or adapting technology to serve user needs.", "skill_id": "Technology Design" },
+    { "id": "CRS_25", "text": "Determining causes of errors and deciding what to do.", "skill_id": "Troubleshooting" }
+  ]
+}

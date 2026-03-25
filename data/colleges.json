@@ -1,0 +1,407 @@
+{
+  "COL_001": {
+    "institution_name": "Batangas State University",
+    "location": "Batangas City",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_001",
+        "estimated_tuition": 0,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_007",
+        "estimated_tuition": 0,
+        "minimum_gwa": 87,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_014",
+        "estimated_tuition": 0,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_002",
+        "estimated_tuition": 0,
+        "minimum_gwa": 84,
+        "accepted_strands": ["STEM", "TVL"]
+      }
+    ]
+  },
+  "COL_002": {
+    "institution_name": "De La Salle Lipa",
+    "location": "Lipa City",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_001",
+        "estimated_tuition": 65000,
+        "minimum_gwa": 88,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_004",
+        "estimated_tuition": 60000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["ABM", "GAS"]
+      },
+      {
+        "program_id": "PRG_005",
+        "estimated_tuition": 55000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["HUMSS", "GAS"]
+      },
+      {
+        "program_id": "PRG_006",
+        "estimated_tuition": 60000,
+        "minimum_gwa": 87,
+        "accepted_strands": ["HUMSS", "STEM"]
+      }
+    ]
+  },
+  "COL_003": {
+    "institution_name": "University of Santo Tomas",
+    "location": "Manila",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_003",
+        "estimated_tuition": 80000,
+        "minimum_gwa": 90,
+        "accepted_strands": ["ABM"]
+      },
+      {
+        "program_id": "PRG_008",
+        "estimated_tuition": 90000,
+        "minimum_gwa": 90,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_012",
+        "estimated_tuition": 85000,
+        "minimum_gwa": 89,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_006",
+        "estimated_tuition": 75000,
+        "minimum_gwa": 88,
+        "accepted_strands": ["HUMSS", "STEM"]
+      }
+    ]
+  },
+  "COL_004": {
+    "institution_name": "Polytechnic University of the Philippines",
+    "location": "Manila",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_004",
+        "estimated_tuition": 0,
+        "minimum_gwa": 83,
+        "accepted_strands": ["ABM", "GAS"]
+      },
+      {
+        "program_id": "PRG_011",
+        "estimated_tuition": 0,
+        "minimum_gwa": 82,
+        "accepted_strands": ["HUMSS", "GAS"]
+      },
+      {
+        "program_id": "PRG_013",
+        "estimated_tuition": 0,
+        "minimum_gwa": 84,
+        "accepted_strands": ["HUMSS", "GAS"]
+      },
+      {
+        "program_id": "PRG_015",
+        "estimated_tuition": 0,
+        "minimum_gwa": 83,
+        "accepted_strands": ["ABM"]
+      }
+    ]
+  },
+  "COL_005": {
+    "institution_name": "Lyceum of the Philippines University",
+    "location": "Batangas City",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_009",
+        "estimated_tuition": 50000,
+        "minimum_gwa": 82,
+        "accepted_strands": ["ABM", "GAS"]
+      },
+      {
+        "program_id": "PRG_010",
+        "estimated_tuition": 48000,
+        "minimum_gwa": 82,
+        "accepted_strands": ["ABM", "GAS"]
+      },
+      {
+        "program_id": "PRG_002",
+        "estimated_tuition": 55000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM", "TVL"]
+      },
+      {
+        "program_id": "PRG_005",
+        "estimated_tuition": 50000,
+        "minimum_gwa": 83,
+        "accepted_strands": ["HUMSS"]
+      }
+    ]
+  },
+  "COL_006": {
+    "institution_name": "Cavite State University",
+    "location": "Indang",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_016",
+        "estimated_tuition": 0,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_020",
+        "estimated_tuition": 0,
+        "minimum_gwa": 84,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_026",
+        "estimated_tuition": 0,
+        "minimum_gwa": 82,
+        "accepted_strands": ["STEM", "GAS"]
+      }
+    ]
+  },
+  "COL_007": {
+    "institution_name": "Technological University of the Philippines",
+    "location": "Manila",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_016",
+        "estimated_tuition": 0,
+        "minimum_gwa": 86,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_017",
+        "estimated_tuition": 0,
+        "minimum_gwa": 86,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_028",
+        "estimated_tuition": 0,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+  "COL_008": {
+    "institution_name": "Far Eastern University",
+    "location": "Manila",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_018",
+        "estimated_tuition": 85000,
+        "minimum_gwa": 88,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_019",
+        "estimated_tuition": 80000,
+        "minimum_gwa": 87,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_022",
+        "estimated_tuition": 65000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["HUMSS"]
+      }
+    ]
+  },
+  "COL_009": {
+    "institution_name": "Mapua University",
+    "location": "Manila",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_017",
+        "estimated_tuition": 90000,
+        "minimum_gwa": 90,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_024",
+        "estimated_tuition": 85000,
+        "minimum_gwa": 88,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_025",
+        "estimated_tuition": 90000,
+        "minimum_gwa": 90,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+  "COL_010": {
+    "institution_name": "University of the East",
+    "location": "Manila",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_021",
+        "estimated_tuition": 60000,
+        "minimum_gwa": 84,
+        "accepted_strands": ["ABM"]
+      },
+      {
+        "program_id": "PRG_029",
+        "estimated_tuition": 55000,
+        "minimum_gwa": 83,
+        "accepted_strands": ["HUMSS"]
+      },
+      {
+        "program_id": "PRG_022",
+        "estimated_tuition": 60000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["HUMSS"]
+      }
+    ]
+  },
+  "COL_011": {
+    "institution_name": "Bicol University",
+    "location": "Legazpi",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_020",
+        "estimated_tuition": 0,
+        "minimum_gwa": 83,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_026",
+        "estimated_tuition": 0,
+        "minimum_gwa": 82,
+        "accepted_strands": ["STEM", "GAS"]
+      },
+      {
+        "program_id": "PRG_027",
+        "estimated_tuition": 0,
+        "minimum_gwa": 82,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+  "COL_012": {
+    "institution_name": "Holy Angel University",
+    "location": "Angeles",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_024",
+        "estimated_tuition": 70000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_021",
+        "estimated_tuition": 65000,
+        "minimum_gwa": 84,
+        "accepted_strands": ["ABM"]
+      },
+      {
+        "program_id": "PRG_023",
+        "estimated_tuition": 60000,
+        "minimum_gwa": 83,
+        "accepted_strands": ["HUMSS"]
+      }
+    ]
+  },
+  "COL_013": {
+    "institution_name": "Saint Louis University",
+    "location": "Baguio",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_018",
+        "estimated_tuition": 75000,
+        "minimum_gwa": 86,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_019",
+        "estimated_tuition": 78000,
+        "minimum_gwa": 87,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_030",
+        "estimated_tuition": 70000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+  "COL_014": {
+    "institution_name": "West Visayas State University",
+    "location": "Iloilo",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_023",
+        "estimated_tuition": 0,
+        "minimum_gwa": 83,
+        "accepted_strands": ["HUMSS"]
+      },
+      {
+        "program_id": "PRG_029",
+        "estimated_tuition": 0,
+        "minimum_gwa": 82,
+        "accepted_strands": ["HUMSS"]
+      },
+      {
+        "program_id": "PRG_030",
+        "estimated_tuition": 0,
+        "minimum_gwa": 84,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+  "COL_015": {
+    "institution_name": "University of San Carlos",
+    "location": "Cebu",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_016",
+        "estimated_tuition": 80000,
+        "minimum_gwa": 88,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_028",
+        "estimated_tuition": 78000,
+        "minimum_gwa": 87,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_025",
+        "estimated_tuition": 82000,
+        "minimum_gwa": 89,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  }
+}

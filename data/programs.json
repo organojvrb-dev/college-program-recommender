@@ -1,0 +1,212 @@
+{
+  "PRG_001": {
+    "program_name": "BS Computer Science",
+    "riasec_primary": "Investigative",
+    "riasec_secondary": "Realistic",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Programming", "Mathematics", "Critical Thinking", "Systems Analysis", "Technology Design"]
+  },
+  "PRG_002": {
+    "program_name": "BS Information Technology",
+    "riasec_primary": "Realistic",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Installation", "Troubleshooting", "Systems Analysis", "Operation Monitoring", "Programming"]
+  },
+  "PRG_003": {
+    "program_name": "BS Accountancy",
+    "riasec_primary": "Conventional",
+    "riasec_secondary": "Enterprising",
+    "riasec_tertiary": "Investigative",
+    "core_skills": ["Mathematics", "Critical Thinking", "Judgment and Decision Making", "Management of Financial Resources", "Reading Comprehension"]
+  },
+  "PRG_004": {
+    "program_name": "BS Business Administration",
+    "riasec_primary": "Enterprising",
+    "riasec_secondary": "Conventional",
+    "riasec_tertiary": "Social",
+    "core_skills": ["Management of Personnel Resources", "Negotiation", "Persuasion", "Judgment and Decision Making", "Time Management"]
+  },
+  "PRG_005": {
+    "program_name": "BA Communication",
+    "riasec_primary": "Artistic",
+    "riasec_secondary": "Social",
+    "riasec_tertiary": "Enterprising",
+    "core_skills": ["Writing", "Speaking", "Active Listening", "Social Perceptiveness", "Coordination"]
+  },
+  "PRG_006": {
+    "program_name": "BS Psychology",
+    "riasec_primary": "Social",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Artistic",
+    "core_skills": ["Active Listening", "Social Perceptiveness", "Critical Thinking", "Service Orientation", "Reading Comprehension"]
+  },
+  "PRG_007": {
+    "program_name": "BS Civil Engineering",
+    "riasec_primary": "Realistic",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Mathematics", "Operations Analysis", "Technology Design", "Quality Control Analysis", "Critical Thinking"]
+  },
+  "PRG_008": {
+    "program_name": "BS Nursing",
+    "riasec_primary": "Social",
+    "riasec_secondary": "Realistic",
+    "riasec_tertiary": "Investigative",
+    "core_skills": ["Service Orientation", "Active Listening", "Social Perceptiveness", "Critical Thinking", "Monitoring"]
+  },
+  "PRG_009": {
+    "program_name": "BS Hospitality Management",
+    "riasec_primary": "Enterprising",
+    "riasec_secondary": "Social",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Service Orientation", "Coordination", "Management of Personnel Resources", "Time Management", "Speaking"]
+  },
+  "PRG_010": {
+    "program_name": "BS Tourism Management",
+    "riasec_primary": "Enterprising",
+    "riasec_secondary": "Social",
+    "riasec_tertiary": "Artistic",
+    "core_skills": ["Speaking", "Social Perceptiveness", "Coordination", "Service Orientation", "Writing"]
+  },
+  "PRG_011": {
+    "program_name": "BS Criminology",
+    "riasec_primary": "Realistic",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Social",
+    "core_skills": ["Critical Thinking", "Judgment and Decision Making", "Observation", "Social Perceptiveness", "Reading Comprehension"]
+  },
+  "PRG_012": {
+    "program_name": "BS Architecture",
+    "riasec_primary": "Artistic",
+    "riasec_secondary": "Realistic",
+    "riasec_tertiary": "Investigative",
+    "core_skills": ["Technology Design", "Operations Analysis", "Mathematics", "Critical Thinking", "Quality Control Analysis"]
+  },
+  "PRG_013": {
+    "program_name": "BS Education",
+    "riasec_primary": "Social",
+    "riasec_secondary": "Artistic",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Instructing", "Speaking", "Active Listening", "Learning Strategies", "Social Perceptiveness"]
+  },
+  "PRG_014": {
+    "program_name": "BS Biology",
+    "riasec_primary": "Investigative",
+    "riasec_secondary": "Realistic",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Science", "Critical Thinking", "Active Learning", "Reading Comprehension", "Writing"]
+  },
+  "PRG_015": {
+    "program_name": "BS Marketing Management",
+    "riasec_primary": "Enterprising",
+    "riasec_secondary": "Artistic",
+    "riasec_tertiary": "Social",
+    "core_skills": ["Persuasion", "Negotiation", "Speaking", "Social Perceptiveness", "Critical Thinking"]
+  },
+  "PRG_016": {
+    "program_name": "BS Mechanical Engineering",
+    "riasec_primary": "Realistic",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Mathematics", "Operations Analysis", "Technology Design", "Troubleshooting", "Quality Control Analysis"]
+  },
+  "PRG_017": {
+    "program_name": "BS Electrical Engineering",
+    "riasec_primary": "Realistic",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Mathematics", "Programming", "Operations Monitoring", "Troubleshooting", "Technology Design"]
+  },
+  "PRG_018": {
+    "program_name": "BS Pharmacy",
+    "riasec_primary": "Investigative",
+    "riasec_secondary": "Social",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Science", "Critical Thinking", "Reading Comprehension", "Active Listening", "Service Orientation"]
+  },
+  "PRG_019": {
+    "program_name": "BS Medical Technology",
+    "riasec_primary": "Investigative",
+    "riasec_secondary": "Realistic",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Science", "Quality Control Analysis", "Critical Thinking", "Operations Monitoring", "Reading Comprehension"]
+  },
+  "PRG_020": {
+    "program_name": "BS Environmental Science",
+    "riasec_primary": "Investigative",
+    "riasec_secondary": "Realistic",
+    "riasec_tertiary": "Social",
+    "core_skills": ["Science", "Critical Thinking", "Active Learning", "Systems Analysis", "Writing"]
+  },
+  "PRG_021": {
+    "program_name": "BS Entrepreneurship",
+    "riasec_primary": "Enterprising",
+    "riasec_secondary": "Conventional",
+    "riasec_tertiary": "Social",
+    "core_skills": ["Persuasion", "Negotiation", "Management of Financial Resources", "Judgment and Decision Making", "Time Management"]
+  },
+  "PRG_022": {
+    "program_name": "BA Political Science",
+    "riasec_primary": "Social",
+    "riasec_secondary": "Enterprising",
+    "riasec_tertiary": "Investigative",
+    "core_skills": ["Critical Thinking", "Reading Comprehension", "Writing", "Speaking", "Judgment and Decision Making"]
+  },
+  "PRG_023": {
+    "program_name": "BS Social Work",
+    "riasec_primary": "Social",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Artistic",
+    "core_skills": ["Service Orientation", "Active Listening", "Social Perceptiveness", "Coordination", "Critical Thinking"]
+  },
+  "PRG_024": {
+    "program_name": "BS Information Systems",
+    "riasec_primary": "Investigative",
+    "riasec_secondary": "Conventional",
+    "riasec_tertiary": "Realistic",
+    "core_skills": ["Systems Analysis", "Programming", "Judgment and Decision Making", "Operations Analysis", "Technology Design"]
+  },
+  "PRG_025": {
+    "program_name": "BS Data Science",
+    "riasec_primary": "Investigative",
+    "riasec_secondary": "Conventional",
+    "riasec_tertiary": "Realistic",
+    "core_skills": ["Mathematics", "Programming", "Critical Thinking", "Systems Analysis", "Active Learning"]
+  },
+  "PRG_026": {
+    "program_name": "BS Agriculture",
+    "riasec_primary": "Realistic",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Social",
+    "core_skills": ["Science", "Operations Monitoring", "Equipment Maintenance", "Critical Thinking", "Active Learning"]
+  },
+  "PRG_027": {
+    "program_name": "BS Fisheries",
+    "riasec_primary": "Realistic",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Science", "Operations Monitoring", "Quality Control Analysis", "Critical Thinking", "Equipment Maintenance"]
+  },
+  "PRG_028": {
+    "program_name": "BS Industrial Engineering",
+    "riasec_primary": "Investigative",
+    "riasec_secondary": "Realistic",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Systems Analysis", "Operations Analysis", "Mathematics", "Judgment and Decision Making", "Quality Control Analysis"]
+  },
+  "PRG_029": {
+    "program_name": "BS Public Administration",
+    "riasec_primary": "Enterprising",
+    "riasec_secondary": "Social",
+    "riasec_tertiary": "Conventional",
+    "core_skills": ["Management of Personnel Resources", "Coordination", "Judgment and Decision Making", "Speaking", "Reading Comprehension"]
+  },
+  "PRG_030": {
+    "program_name": "BS Nutrition and Dietetics",
+    "riasec_primary": "Social",
+    "riasec_secondary": "Investigative",
+    "riasec_tertiary": "Realistic",
+    "core_skills": ["Science", "Service Orientation", "Active Listening", "Critical Thinking", "Reading Comprehension"]
+  }
+}

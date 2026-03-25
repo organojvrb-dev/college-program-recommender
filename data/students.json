@@ -1,0 +1,182 @@
+{
+  "24-0001": {
+    "first_name": "Juan",
+    "last_name": "Dela Cruz",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "24-0002": {
+    "first_name": "Maria",
+    "last_name": "Santos",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "24-0003": {
+    "first_name": "Jose",
+    "last_name": "Reyes",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "24-0004": {
+    "first_name": "Ana",
+    "last_name": "Garcia",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "24-0005": {
+    "first_name": "Mark",
+    "last_name": "Torres",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "24-0006": {
+    "first_name": "Liza",
+    "last_name": "Flores",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "24-0007": {
+    "first_name": "Carlo",
+    "last_name": "Mendoza",
+    "strand": "ABM",
+    "status": "Dropped"
+  },
+  "24-0008": {
+    "first_name": "Bea",
+    "last_name": "Aquino",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "24-0009": {
+    "first_name": "Paolo",
+    "last_name": "Navarro",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "24-0010": {
+    "first_name": "Jessa",
+    "last_name": "Ramos",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "24-0011": {
+    "first_name": "Kevin",
+    "last_name": "Villanueva",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "24-0012": {
+    "first_name": "Angel",
+    "last_name": "Castro",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "24-0013": {
+    "first_name": "Ralph",
+    "last_name": "Morales",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "24-0014": {
+    "first_name": "Trisha",
+    "last_name": "Gutierrez",
+    "strand": "HUMSS",
+    "status": "Dropped"
+  },
+  "24-0015": {
+    "first_name": "Ethan",
+    "last_name": "Lopez",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "24-0016": {
+    "first_name": "Noah",
+    "last_name": "Fernandez",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "24-0017": {
+    "first_name": "Mia",
+    "last_name": "Rivera",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "24-0018": {
+    "first_name": "Lucas",
+    "last_name": "Gonzales",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "24-0019": {
+    "first_name": "Sophia",
+    "last_name": "Perez",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "24-0020": {
+    "first_name": "Eli",
+    "last_name": "Cruz",
+    "strand": "TVL",
+    "status": "Dropped"
+  },
+  "24-0021": {
+    "first_name": "Ava",
+    "last_name": "Bautista",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "24-0022": {
+    "first_name": "Liam",
+    "last_name": "Diaz",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "24-0023": {
+    "first_name": "Isabella",
+    "last_name": "Herrera",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "24-0024": {
+    "first_name": "James",
+    "last_name": "Castillo",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "24-0025": {
+    "first_name": "Charlotte",
+    "last_name": "Moreno",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "24-0026": {
+    "first_name": "Benjamin",
+    "last_name": "Ramos",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "24-0027": {
+    "first_name": "Amelia",
+    "last_name": "Torres",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "24-0028": {
+    "first_name": "Daniel",
+    "last_name": "Flores",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "24-0029": {
+    "first_name": "Harper",
+    "last_name": "Villanueva",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "24-0030": {
+    "first_name": "Henry",
+    "last_name": "Aquino",
+    "strand": "GAS",
+    "status": "Enrolled"
+  }
+}

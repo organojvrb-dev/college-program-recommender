@@ -1,0 +1,162 @@
+/* ==========================================
+   1. LAYOUT & SYMMETRY (The "Perfect Match")
+   ========================================== */
+
+/* Apply this class to the <div class="row"> containing the questions and sidebar */
+.assessment-row {
+    display: flex;
+    align-items: stretch; /* Forces both columns to be equal height */
+}
+
+/* The Main Sidebar Card */
+.sticky-tracker {
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Container for the Accordion Cards */
+#tracker-container {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0; /* Prevents flexbox overflow bugs */
+}
+
+/* ==========================================
+   2. ACCORDION / REVEAL CARDS
+   ========================================== */
+.tracker-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+    flex: 0 0 auto; /* Collapsed size */
+    transition: all 0.3s ease;
+}
+
+/* Active Card stretches to fill all available space */
+.tracker-card.active {
+    flex: 1 1 auto; 
+    border-color: #435ebe;
+    box-shadow: 0 4px 10px rgba(67, 94, 190, 0.1);
+}
+
+.tracker-header {
+    padding: 12px 15px;
+    background: #f8f9fa;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.tracker-card.active .tracker-header {
+    background: #435ebe;
+    color: #fff;
+}
+
+.tracker-body {
+    padding: 15px;
+    display: none; 
+    flex-grow: 1;
+    overflow-y: auto; /* Scrollable inside the card */
+    background: #ffffff;
+}
+
+.tracker-card.active .tracker-body {
+    display: block; 
+}
+
+/* ==========================================
+   3. BUBBLE SELECTION SYSTEM
+   ========================================== */
+.bubble-container { max-width: 500px; margin: 0 auto; padding: 10px 0; }
+.bubble-group { display: flex; justify-content: space-between; align-items: center; position: relative; }
+
+.bubble-group::before {
+    content: ''; position: absolute; top: 50%; left: 0; right: 0;
+    height: 2px; background-color: #e9ecef; z-index: 1; transform: translateY(-50%);
+    pointer-events: none; 
+}
+
+.bubble { 
+    position: relative; 
+    width: 25px; height: 25px; border-radius: 50%; 
+    background-color: #f8f9fa; border: 2px solid #ced4da;
+    cursor: pointer; z-index: 2;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+.bubble:hover { transform: scale(1.3); }
+.bubble.active { transform: scale(1.6); border-color: transparent; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+/* Color Mapping */
+.bubble[data-val="1"]:hover, .bubble[data-val="1"].active { background-color: #ffadad; } 
+.bubble[data-val="2"]:hover, .bubble[data-val="2"].active { background-color: #ffd6d6; } 
+.bubble[data-val="3"]:hover, .bubble[data-val="3"].active { background-color: #e9ecef; } 
+.bubble[data-val="4"]:hover, .bubble[data-val="4"].active { background-color: #d4edda; } 
+.bubble[data-val="5"]:hover, .bubble[data-val="5"].active { background-color: #a3cfbb; } 
+
+.scale-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: bold; color: #adb5bd; margin-bottom: 5px; text-transform: uppercase; }
+
+/* ==========================================
+   4. DATA VISUALS (Charts & Progress)
+   ========================================== */
+.chart-wrapper {
+    position: relative;
+    height: 180px; 
+    width: 100%;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.interest-badge {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.skill-item { margin-bottom: 10px; }
+.skill-name { font-size: 0.72rem; font-weight: 600; color: #4b4b4b; margin-bottom: 2px; display: block; }
+.progress-container { background: #e9ecef; border-radius: 10px; height: 6px; width: 100%; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 10px; transition: width 0.6s ease-in-out; }
+
+.bg-phase-b { background-color: #20c997; } 
+.bg-phase-c { background-color: #0d6efd; } 
+
+/* ==========================================
+   5. UTILITIES (Scrollbars)
+   ========================================== */
+.tracker-body::-webkit-scrollbar { width: 5px; }
+.tracker-body::-webkit-scrollbar-track { background: #f1f1f1; }
+.tracker-body::-webkit-scrollbar-thumb { background: #435ebe; border-radius: 10px; }
+
+.clickable-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.clickable-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.clickable-row:hover {
+    background-color: #f8f9fa !important;
+}

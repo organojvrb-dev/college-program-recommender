@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guidance Assessment Tool</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { background-color: #f4f6f9; }
+        /* Temporary overrides for specific profile page look */
+        input[readonly] { background-color: #e9ecef; cursor: not-allowed; }
+        .phase-badge { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+    </style>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d6efd">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+
+    <div class="container mt-4 px-4">
+
+        <div id="section-setup" class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card p-4">
+                    <h3 class="mb-4 text-center">Student Profile</h3>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Student ID</label>
+                        <div class="input-group">
+                            <input type="text" id="input-id-year" class="form-control text-center" placeholder="YY" maxlength="2" style="flex: 0 0 25%;">
+                            <span class="input-group-text fw-bold bg-light">-</span>
+                            <input type="text" id="input-id-num" class="form-control text-center" placeholder="XXXX" maxlength="4" style="flex: 1 1 auto;">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label class="form-label fw-bold">First Name</label>
+                            <input type="text" id="input-fname" class="form-control" placeholder="Auto-filled..." readonly>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label fw-bold">Last Name</label>
+                            <input type="text" id="input-lname" class="form-control" placeholder="Auto-filled..." readonly>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Strand</label>
+                        <input type="text" id="input-strand" class="form-control" placeholder="Auto-filled from ID..." readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">General Weighted Average (GWA)</label>
+                        <input type="number" id="input-gwa" class="form-control" placeholder="e.g., 88">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Tuition Budget Limit (Per Sem)</label>
+                        <input type="number" id="input-budget" class="form-control" placeholder="e.g., 50000">
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label class="form-label fw-bold">Preferred Location</label>
+                            <select id="input-location" class="form-select">
+                                <option value="Any">Any Location</option>
+                                </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Institution Type</label>
+                            <select id="input-type" class="form-select">
+                                <option value="Any">Any Type</option>
+                                <option value="Public">Public (State U)</option>
+                                <option value="Private">Private</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="btn-start-assessment" class="btn btn-primary w-100 py-2 fw-bold shadow-sm">Start Assessment</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-assessment" class="d-none">
+            <div class="row assessment-row gx-4">
+                
+                <div class="col-lg-8">
+                    <div class="card p-4 h-100 shadow-sm border-0">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-primary phase-badge" id="current-phase-label">Phase A: Motivation</span>
+                            <span class="text-muted fw-bold" id="question-counter">Page 1 of 13</span>
+                        </div>
+                        
+                        <div class="progress mb-4" style="height: 8px; border-radius: 10px;">
+                            <div class="progress-bar progress-bar-animated" id="test-progress" style="width: 5%"></div>
+                        </div>
+
+                        <div id="instructions-container" class="d-none flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center py-5">
+                            <div class="mb-4">
+                                <i class="bi bi-info-circle text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h3 id="instr-title" class="fw-bold mb-3 text-dark"></h3>
+                            <p id="instr-text" class="lead text-muted mb-4 px-md-5"></p>
+                            <button id="btn-proceed" class="btn btn-lg btn-primary px-5 shadow-sm rounded-pill">
+                                I Understand, Start Phase
+                            </button>
+                        </div>
+
+                        <div id="questions-container" class="flex-grow-1 overflow-auto pe-2" style="min-height: 400px;">
+                            <div class="text-center py-5">
+                                <div class="spinner-border text-primary" role="status"></div>
+                                <p class="mt-2 text-muted">Loading Questions...</p>
+                            </div>
+                        </div>
+
+                        <div id="finish-container" class="d-none flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center py-5 bg-light rounded-3 border">
+                            <div class="mb-3">
+                                <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                            </div>
+                            <h2 class="text-dark fw-bold mb-2">Assessment Completed!</h2>
+                            <p class="text-muted mb-4 px-md-5">All your responses have been successfully recorded. You are now ready to generate your personalized program recommendations.</p>
+                            
+                            <button class="btn btn-success btn-lg px-5 py-3 shadow fw-bold rounded-pill" id="btn-calculate">
+                                <i class="bi bi-cpu-fill me-2"></i>Execute Recommendation Algorithm
+                            </button>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4 border-top pt-4" id="nav-group">
+                            <button class="btn btn-outline-secondary px-4 fw-bold" id="btn-prev" disabled>
+                                <i class="bi bi-arrow-left me-2"></i>Previous
+                            </button>
+                            <button class="btn btn-primary px-5 fw-bold" id="btn-next">
+                                Next Page<i class="bi bi-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card p-4 sticky-tracker bg-white h-100 shadow-sm border-0">
+                        <h5 class="mb-4 text-center border-bottom pb-3 fw-bold text-dark">Live Gap Analysis</h5>
+                        
+                        <div id="tracker-container">
+                            
+                            <div id="card-riasec" class="tracker-card active unlocked">
+                                <div class="tracker-header">
+                                    <span>I. Interest Profile</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="tracker-body" id="tracker-riasec">
+                                    <div class="text-center text-muted p-4">
+                                        <i class="bi bi-graph-up-arrow d-block mb-2 fs-3"></i>
+                                        <em>Complete Phase A to generate Holland Code...</em>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="card-basic" class="tracker-card">
+                                <div class="tracker-header">
+                                    <span>II. Foundational Skills</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="tracker-body" id="tracker-basic">
+                                    <div class="text-center text-muted p-4">
+                                        <i class="bi bi-lock d-block mb-2 fs-3"></i>
+                                        <em>Locked until Phase A completion</em>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="card-cross" class="tracker-card">
+                                <div class="tracker-header">
+                                    <span>III. Specialization</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="tracker-body" id="tracker-cross">
+                                    <div class="text-center text-muted p-4">
+                                        <i class="bi bi-lock d-block mb-2 fs-3"></i>
+                                        <em>Locked until Phase B completion</em>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    <div id="section-dashboard" class="d-none">
+            <div class="card p-5 text-center mt-4 shadow-sm border-0">
+                <div class="mb-4">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                </div>
+                <h1 class="display-5 fw-bold text-success mb-3">Algorithm Execution Complete</h1>
+                <p class="lead text-muted mb-4">The system has analyzed your profile and grouped the best matching programs.</p>
+                
+                <div id="dashboard-results"></div>
+
+                <div class="mt-5">
+                    <button class="btn btn-outline-secondary px-4 me-3 fw-bold" data-bs-toggle="modal" data-bs-target="#allProgramsModal">
+                        <i class="bi bi-list-ul me-2"></i>View All Matches
+                    </button>
+                    <button class="btn btn-primary px-4 fw-bold" onclick="location.reload()">
+                        <i class="bi bi-arrow-clockwise me-2"></i>Reset Assessment
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div> <div class="modal fade" id="allProgramsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-database me-2"></i>Full Gap Analysis Results</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="all-programs-list">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="programDetailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white border-0">
+                    <div>
+                        <span class="badge bg-success mb-1" id="detail-match-score">95% Match</span>
+                        <h4 class="modal-title fw-bold" id="detail-program-name">Program Name</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 bg-light">
+                    
+                    <h6 class="fw-bold text-uppercase text-muted mb-3"><i class="bi bi-robot me-2"></i>Explainable AI Breakdown</h6>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <strong class="text-primary d-block mb-2"><i class="bi bi-brain me-2"></i>Psychological Fit</strong>
+                                    <p class="mb-0 text-muted" id="detail-xai-psych" style="font-size: 0.9rem;"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <strong class="text-success d-block mb-2"><i class="bi bi-tools me-2"></i>Skills Readiness</strong>
+                                    <p class="mb-0 text-muted" id="detail-xai-skills" style="font-size: 0.9rem;"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="fw-bold text-uppercase text-muted mb-3 mt-2"><i class="bi bi-building me-2"></i>Eligible Institutions</h6>
+                    <div class="alert alert-info py-2" style="font-size: 0.85rem;">
+                        <i class="bi bi-info-circle me-2"></i>Institutions are ranked by your Location/Type preferences, then by cheapest tuition.
+                    </div>
+                    <div class="list-group shadow-sm" id="detail-college-list">
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
