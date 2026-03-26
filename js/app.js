@@ -884,11 +884,11 @@ function openProgramDetails(progId) {
 }
 
 // ==========================================
-// 🛠️ DEV CHEAT CODE: CTRL + SHIFT + `
+// 🛠️ DEV CHEAT CODE: CTRL + SHIFT + 1
 // ==========================================
 document.addEventListener('keydown', (e) => {
-    // Triggers only if you press Ctrl, Shift, and Q all at the same time
-    if (e.ctrlKey && e.shiftKey && e.key === '`') {
+    // Triggers only if you press Ctrl, Shift, and 1 all at the same time
+    if (e.ctrlKey && e.shiftKey && e.key === '1') {
         if (!questionBank) return console.warn("Databases not loaded yet!");
         
         ['phaseA', 'phaseB', 'phaseC'].forEach((phase, idx) => {
