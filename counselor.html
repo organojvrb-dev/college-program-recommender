@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAMS | Counselor Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .dashboard-card { border: none; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .dashboard-card:hover { transform: translateY(-3px); }
+        .admin-header { background: linear-gradient(135deg, #0d6efd, #0b5ed7); color: white; padding: 2rem 0; margin-bottom: 2rem; border-radius: 0 0 20px 20px; box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2); }
+        #security-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); z-index: 9999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+    </style>
+</head>
+<body>
+
+    <div id="security-overlay">
+        <div class="card shadow-lg border-0" style="width: 25rem; border-radius: 15px;">
+            <div class="card-body p-5 text-center">
+                <i class="bi bi-shield-lock-fill text-primary" style="font-size: 3rem;"></i>
+                <h4 class="mt-3 mb-4 fw-bold">GAMS Portal</h4>
+                <p class="text-muted small mb-4">Enter administrative passcode to view analytics.</p>
+                <input type="password" id="input-tier1-pass" class="form-control form-control-lg mb-3 text-center" placeholder="••••••••">
+                <button id="btn-login-tier1" class="btn btn-primary w-100 btn-lg">Access Analytics</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content" class="container-fluid px-4 d-none">
+        
+        <div class="admin-header px-4 d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="fw-bold mb-0"><i class="bi bi-clipboard-data me-2"></i> Decision Support Dashboard</h2>
+                <p class="mb-0 opacity-75">Guidance Assessment Management System</p>
+            </div>
+            <button class="btn btn-light btn-sm fw-bold text-primary" onclick="window.location.href='index.html'">
+                <i class="bi bi-box-arrow-left me-1"></i> Exit Portal
+            </button>
+        </div>
+
+        <div id="view-analytics">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold text-secondary">Batch Overview</h4>
+                <button id="btn-export-summary" class="btn btn-outline-success">
+                    <i class="bi bi-file-earmark-spreadsheet me-1"></i> Export Summary (CSV)
+                </button>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card dashboard-card bg-white p-3 border-start border-primary border-5">
+                        <div class="text-muted small fw-bold text-uppercase">Total Assessed</div>
+                        <h2 class="fw-bold mb-0" id="stat-total-students">--</h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card dashboard-card bg-white p-3 border-start border-success border-5">
+                        <div class="text-muted small fw-bold text-uppercase">Top Recommended Program</div>
+                        <h4 class="fw-bold mb-0 text-truncate" id="stat-top-program">--</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card dashboard-card bg-white p-3 border-start border-info border-5">
+                        <div class="text-muted small fw-bold text-uppercase">Dominant RIASEC Trait</div>
+                        <h2 class="fw-bold mb-0" id="stat-top-riasec">--</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-md-8">
+                    <div class="card dashboard-card h-100 p-4">
+                        <h6 class="fw-bold mb-3 text-secondary">Program Recommendation Distribution</h6>
+                        <div style="position: relative; height: 300px; width: 100%;">
+                            <canvas id="chart-programs"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card dashboard-card h-100 p-4">
+                        <h6 class="fw-bold mb-3 text-secondary">RIASEC Personality Breakdown</h6>
+                        <div style="position: relative; height: 300px; width: 100%;">
+                            <canvas id="chart-riasec"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-dark text-white rounded-4 p-4 text-center shadow-lg mb-5">
+                <h5 class="fw-bold"><i class="bi bi-people-fill me-2"></i> Student Roster Access</h5>
+                <p class="text-light opacity-75 small mb-3">Viewing individual student PII (Personally Identifiable Information) and exact SAW match scores requires Counselor Authorization.</p>
+                <div class="d-flex justify-content-center">
+                    <input type="password" id="input-tier2-pass" class="form-control w-25 text-center me-2" placeholder="Counselor PIN">
+                    <button id="btn-login-tier2" class="btn btn-warning fw-bold">Unlock Roster</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-roster" class="d-none mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h4 class="fw-bold text-secondary mb-0"><i class="bi bi-person-lines-fill me-2"></i> Individual Assessment Results</h4>
+                    <button id="btn-back-analytics" class="btn btn-link text-decoration-none p-0 mt-1"><i class="bi bi-arrow-left me-1"></i> Back to Analytics</button>
+                </div>
+                <button id="btn-export-roster" class="btn btn-success shadow-sm">
+                    <i class="bi bi-file-earmark-spreadsheet me-1"></i> Export Full Roster (CSV)
+                </button>
+            </div>
+
+            <div class="card dashboard-card p-0 overflow-hidden">
+                <div class="bg-light p-3 border-bottom d-flex gap-3">
+                    <input type="text" id="search-student" class="form-control" placeholder="Search by name...">
+                    <select id="filter-strand" class="form-select w-25">
+                        <option value="All">All Strands</option>
+                        <option value="STEM">STEM</option>
+                        <option value="ABM">ABM</option>
+                        <option value="HUMSS">HUMSS</option>
+                        <option value="ICT">ICT</option>
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Date</th>
+                                <th>Student Name</th>
+                                <th>Strand</th>
+                                <th>GWA</th>
+                                <th>Top Recommendation</th>
+                                <th>Match Score</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="roster-tbody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="xaiModal" tabindex="-1" aria-labelledby="xaiModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold" id="xaiModalLabel"><i class="bi bi-cpu-fill me-2"></i> SAW Algorithm Breakdown (XAI)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-light p-4">
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                        <div>
+                            <h3 class="fw-bold mb-0 text-primary" id="xai-student-name">Student Name</h3>
+                            <p class="text-muted small mb-0" id="xai-student-date">Assessment Date</p>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-secondary fs-6" id="xai-student-strand">STRAND</span>
+                            <div class="fw-bold mt-1 text-dark">GWA: <span id="xai-student-gwa" class="text-success">0.00</span></div>
+                        </div>
+                    </div>
+
+                    <h6 class="fw-bold text-secondary text-uppercase small mb-3">Phase 1: Constraint Satisfaction</h6>
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm p-3 text-center h-100">
+                                <i class="bi bi-wallet2 fs-3 text-warning mb-2"></i>
+                                <div class="small text-muted">Max Budget</div>
+                                <div class="fw-bold" id="xai-student-budget">₱0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm p-3 text-center h-100">
+                                <i class="bi bi-geo-alt-fill fs-3 text-danger mb-2"></i>
+                                <div class="small text-muted">Location Pref.</div>
+                                <div class="fw-bold" id="xai-student-location">Any</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm p-3 text-center h-100">
+                                <i class="bi bi-building fs-3 text-info mb-2"></i>
+                                <div class="small text-muted">Institution Pref.</div>
+                                <div class="fw-bold" id="xai-student-type">Any</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="fw-bold text-secondary text-uppercase small mb-3">Phase 2: Personality Alignment</h6>
+                    <div class="card border-0 shadow-sm p-3 mb-4 text-center">
+                        <div class="d-flex justify-content-center gap-2" id="xai-riasec-container">
+                            </div>
+                    </div>
+
+                    <h6 class="fw-bold text-secondary text-uppercase small mb-3">Phase 3: SAW Match Weights</h6>
+                    <div id="xai-programs-container">
+                        </div>
+
+                </div>
+                <div class="modal-footer bg-white">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Profile</button>
+                    <button type="button" class="btn btn-primary" onclick="window.print()"><i class="bi bi-printer-fill me-2"></i>Print Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/counselor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

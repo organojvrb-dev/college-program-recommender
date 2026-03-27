@@ -160,3 +160,25 @@
 .clickable-row:hover {
     background-color: #f8f9fa !important;
 }
+
+/* ==========================================
+   SECRET ADMIN LOGO
+========================================== */
+#secret-admin-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    opacity: 0.3; /* Makes it look like a faded watermark */
+    z-index: 9999;
+    cursor: default; /* Keeps it from looking like a clickable link */
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+/* Lights up slightly when hovered so the Admin knows it's there */
+#secret-admin-logo:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}

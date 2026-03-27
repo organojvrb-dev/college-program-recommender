@@ -1,11 +1,11 @@
 // ==========================================
-// 0. FIREBASE SETUP & CONNECTION & PWA SETUP
+// 0. FIREBASE & PWA INITIALIZATION
 // ==========================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('🚀 Service Worker Registered!', reg))
-            .catch(err => console.log('❌ SW Registration Failed:', err));
+            .then(reg => console.log('Service Worker Registered.', reg))
+            .catch(err => console.error('SW Registration Failed:', err));
     });
 }
 
@@ -24,11 +24,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Expose our Modal function to the HTML
+// Expose modal handler to global scope for inline HTML triggers
 window.openProgramDetails = openProgramDetails;
 
 // ==========================================
-// 1. GLOBAL STATE & DATABASES
+// 1. GLOBAL STATE & DATA STRUCTURES
 // ==========================================
 let questionBank = null;
 let studentsDB = null;
@@ -46,7 +46,7 @@ const totalPages = 13;
 const questionsPerPage = 5;
 
 // ==========================================
-// 1.5 CLOUD AUTO-SAVE HELPERS
+// 2. CLOUD PERSISTENCE (AUTO-SAVE)
 // ==========================================
 function saveProgress() {
     const fullID = document.getElementById('input-id-year').value + "-" + document.getElementById('input-id-num').value;
@@ -71,7 +71,7 @@ async function clearProgress() {
 }
 
 // ==========================================
-// 2. DOM ELEMENTS (Grabbing the HTML)
+// 3. DOM INITIALIZATION
 // ==========================================
 const inputYear = document.getElementById('input-id-year');
 const inputNum = document.getElementById('input-id-num');
@@ -91,7 +91,7 @@ const testProgress = document.getElementById('test-progress');
 const currentPhaseLabel = document.getElementById('current-phase-label');
 
 // ==========================================
-// 3. INITIALIZATION (Fetching the JSONs)
+// 4. DATA FETCHING & PARSING
 // ==========================================
 async function loadDatabases() {
     try {
@@ -107,11 +107,11 @@ async function loadDatabases() {
         collegesDB = await collegesRes.json();
         programsDB = await programsRes.json();
         
-        console.log("Databases loaded successfully!");
+        console.log("Local databases initialized.");
         populateLocationDropdown();
     } catch (error) {
         console.error("Database load error:", error);
-        alert("System Error: Could not load data. Ensure you are running a local server (like VS Code Live Server).");
+        alert("System Error: Could not load data. Ensure you are running a local server environment.");
     }
 }
 loadDatabases(); 
@@ -140,7 +140,7 @@ function populateLocationDropdown() {
 }
 
 // ==========================================
-// 4. SETUP SCREEN LOGIC (Auto-Tab & Auto-Fill)
+// 5. SETUP SCREEN (FORM VALIDATION)
 // ==========================================
 inputYear.addEventListener('input', function() {
     if (this.value.length === 2) inputNum.focus();
@@ -190,7 +190,7 @@ function checkStudentId() {
 }
 
 // ==========================================
-// 5. THE RENDER ENGINE (Drawing the Questions)
+// 6. DYNAMIC UI RENDERING ENGINE
 // ==========================================
 const phaseInstructions = {
     A: {
@@ -215,7 +215,7 @@ function renderPage(page) {
     const fContainer = document.getElementById('finish-container');
     const navGroup = document.querySelector('.d-flex.justify-content-between.mt-4');
 
-    // Reset visibility for everything
+    // Reset UI state
     qContainer.innerHTML = ''; 
     qContainer.classList.add('d-none');
     iContainer.classList.add('d-none');
@@ -223,7 +223,7 @@ function renderPage(page) {
     navGroup.classList.remove('d-none');
     btnNext.classList.remove('d-none');
 
-    // 🚩 1. CHECK IF WE NEED TO SHOW INSTRUCTIONS FIRST
+    // Display instructional modals before starting new phases
     if (!showingInstructions) {
         if (page === 1 || page === 7 || page === 9) {
             showPhaseInstructions(page);
@@ -231,7 +231,6 @@ function renderPage(page) {
         }
     }
     
-    // 🚩 2. IF NOT INSTRUCTIONS, SHOW THE QUESTIONS
     showingInstructions = false; 
     qContainer.classList.remove('d-none');
     
@@ -297,21 +296,18 @@ function renderPage(page) {
         `;
     });
 
-    // 🚩 3. UPDATE NAVIGATION & PROGRESS
+    // Update Navigation Progress
     questionCounter.innerText = `Page ${page} of ${totalPages}`;
     testProgress.style.width = `${(page / totalPages) * 100}%`;
     btnPrev.disabled = (page === 1);
 
-    // 🚩 4. HANDLE THE FINAL "ASSESSMENT COMPLETED" VIEW
+    // Completion State Handling
     if (page === totalPages) {
-        // If they just reached the last page, we change button text
         btnNext.innerText = "Finish Assessment";
         btnNext.classList.replace('btn-primary', 'btn-success');
         
-        // We check if they have actually answered all 5 questions on the final page
         const phaseCAnswers = Object.keys(studentAnswers.phaseC).length;
         if (phaseCAnswers >= 25) {
-            // Assessment is fully done!
             qContainer.classList.add('d-none');
             navGroup.classList.add('d-none');
             fContainer.classList.remove('d-none');
@@ -323,7 +319,6 @@ function renderPage(page) {
     }
 }
 
-// Helper to handle Instruction Screens
 function showPhaseInstructions(page) {
     const iContainer = document.getElementById('instructions-container');
     const navGroup = document.querySelector('.d-flex.justify-content-between.mt-4');
@@ -342,7 +337,7 @@ function showPhaseInstructions(page) {
 }
 
 // ==========================================
-// 6. EVENT LISTENERS (Clicks, Cloud Sync & Pagination)
+// 7. EVENT LISTENERS (Inputs & Sync)
 // ==========================================
 questionsContainer.addEventListener('click', function(e) {
     if (e.target.classList.contains('bubble')) {
@@ -390,17 +385,17 @@ btnPrev.addEventListener('click', () => {
 
 btnStart.addEventListener('click', async function() {
     if (!questionBank || !studentsDB) {
-        alert("Please wait for the databases to finish loading.");
+        alert("System initialization incomplete. Please wait.");
         return;
     }
     
     const fullID = document.getElementById('input-id-year').value + "-" + document.getElementById('input-id-num').value;
     
-    // UI Feedback for Cloud Sync
     const originalText = btnStart.innerText;
     btnStart.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Syncing Profile...`;
     btnStart.disabled = true;
 
+    // Attempt to restore session from Firestore
     try {
         const docSnap = await getDoc(doc(db, "progress", fullID));
 
@@ -408,13 +403,13 @@ btnStart.addEventListener('click', async function() {
             const savedData = docSnap.data();
             studentAnswers = savedData.answers;
             currentPage = savedData.page;
-            console.log("☁️ Restored cloud progress for", fullID);
+            console.log("Restored cloud session for UID:", fullID);
         } else {
             studentAnswers = { phaseA: {}, phaseB: {}, phaseC: {} };
             currentPage = 1;
         }
     } catch (error) {
-        console.error("Cloud sync failed, starting fresh:", error);
+        console.error("Cloud sync failed. Initializing local session:", error);
         studentAnswers = { phaseA: {}, phaseB: {}, phaseC: {} };
         currentPage = 1;
     }
@@ -430,7 +425,7 @@ btnStart.addEventListener('click', async function() {
 });
 
 // ==========================================
-// 7. MATH & VISUALIZATION HELPERS
+// 8. DATA VISUALIZATION LOGIC
 // ==========================================
 function calculatePhaseScores(phaseData, answersObj, keyName) {
     let scores = {};
@@ -512,7 +507,7 @@ function renderRIASECLineChart(canvasId, scores) {
 }
 
 // ==========================================
-// 8. TRACKER UI UPDATES
+// 9. PROGRESS TRACKER UPDATES
 // ==========================================
 function updateTrackerUI() {
     if (currentPage >= 6) {
@@ -603,9 +598,8 @@ document.querySelectorAll('.tracker-header').forEach(header => {
 });
 
 // ==========================================
-// 9. THE SAW ALGORITHM & RESULTS (PROGRAM-FIRST)
+// 10. ALGORITHM: SIMPLE ADDITIVE WEIGHTING (SAW)
 // ==========================================
-
 let currentGlobalResults = [];
 let currentGlobalRIASEC = [];
 
@@ -613,9 +607,9 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
     const rawGWA = document.getElementById('input-gwa').value;
     const studentGWA = parseFloat(rawGWA);
     
-    // 🚩 VALIDATION: Hard stop for invalid GWAs
+    // Client-side execution restraint for strict data boundaries
     if (!rawGWA || isNaN(studentGWA) || studentGWA > 100 || studentGWA < 60) {
-        alert("⚠️ INVALID GWA: Please enter a grade between 60 and 100. The system cannot calculate recommendations for out-of-range values.");
+        alert("System Constraint: Invalid GWA parameter. Input must reside between 60.00 and 100.00.");
         document.getElementById('input-gwa').focus();
         return;
     }
@@ -637,12 +631,14 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
         const college = collegesDB[collegeId];
         
         college.offerings.forEach(offering => {
+            // Hard Constraints (Filtering Phase)
             if (offering.estimated_tuition <= studentBudget && 
                 offering.minimum_gwa <= studentGWA && 
                 offering.accepted_strands.includes(studentStrand)) {
                 
                 const progId = offering.program_id;
                 
+                // Program Scoring Logic
                 if (!evaluatedPrograms[progId]) {
                     const programData = programsDB[progId];
                     
@@ -662,6 +658,8 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
                     
                     let averageSkillMatch = programData.core_skills.length > 0 ? (totalSkillPercentage / programData.core_skills.length) : 0;
                     let finalRiasecWeight = (riasecMatchScore / 30) * 100;
+                    
+                    // Final Multi-Criteria Calculation
                     let totalMatch = (finalRiasecWeight * 0.5) + (averageSkillMatch * 0.5);
 
                     evaluatedPrograms[progId] = {
@@ -701,10 +699,9 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
     currentGlobalResults = eligiblePrograms;
     currentGlobalRIASEC = studentTopRIASEC;
 
-    // 🚩 1. SHOW RESULTS IMMEDIATELY (Zero latency for the student)
+    // Instant local render prior to network transaction
     renderDashboard(eligiblePrograms);
 
-    // 🚩 2. PREPARE CLOUD DATA
     const fullID = document.getElementById('input-id-year').value + "-" + document.getElementById('input-id-num').value;
     const studentFName = document.getElementById('input-fname').value;
     const studentLName = document.getElementById('input-lname').value;
@@ -725,47 +722,44 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
 
     setDoc(doc(db, "results", fullID), assessmentResult)
         .then(() => {
-            console.log(`✅ Successfully saved ${fullID}'s results to Firebase!`);
-            clearProgress(); // ☁️ Delete local save once cloud sync is confirmed
+            console.log(`Cloud sync successful for ID: ${fullID}`);
+            clearProgress();
         })
         .catch((error) => {
-            console.error("❌ Firebase Error:", error);
+            console.error("Firestore persistence warning:", error);
             if (!navigator.onLine) {
-                console.warn("📡 OFFLINE MODE: Result stored locally by Service Worker. Will sync to Counselor Database upon reconnection.");
-            } else {
-                console.warn("⚠️ An error occurred while saving in the background.");
+                console.warn("Offline state detected. Data stored locally via Service Worker indexing.");
             }
         });
 });
 
+// ==========================================
+// 11. GWA INPUT ENFORCEMENT 
+// ==========================================
 const gwaInput = document.getElementById('input-gwa');
 
 gwaInput.addEventListener('input', function() {
-    // 1. Convert what they are typing into a number
     let val = parseFloat(this.value);
     
-    // 2. If it goes over 100, force it back to 100 instantly
     if (val > 100) {
         this.value = 100;
     }
     
-    // 3. Prevent negative numbers just in case
     if (val < 0) {
         this.value = 0;
     }
 });
 
-// 4. When they click away from the box (blur), check the minimum
 gwaInput.addEventListener('blur', function() {
     let val = parseFloat(this.value);
     if (val > 0 && val < 70) {
-        alert("Note: GWA must be at least 70 for the system to process recommendations.");
-        this.value = ""; // Clear it so they have to try again
+        alert("Note: GWA parameters must fulfill the minimum institutional requirement (70.00).");
+        this.value = ""; 
     }
 });
 
 // ==========================================
-// 10. DEEP DIVE MODAL & DASHBOARD
+// 12. EXPLAINABLE AI (XAI) UI PROJECTION
 // ==========================================
 function renderDashboard(allPrograms) {
     document.getElementById('section-assessment').classList.add('d-none');
@@ -777,8 +771,8 @@ function renderDashboard(allPrograms) {
     if (allPrograms.length === 0) {
         resultsContainer.innerHTML = `
             <div class="alert alert-warning text-center">
-                <h5><i class="bi bi-exclamation-triangle"></i> No Matches Found</h5>
-                <p>No programs match your non-negotiable constraints (GWA, Budget, and Strand).</p>
+                <h5><i class="bi bi-exclamation-triangle"></i> No Constraint Matches Found</h5>
+                <p>The specified parameters (GWA, Budget, Strand) returned null intersection with the database.</p>
             </div>`;
         modalList.innerHTML = `<p class="text-center text-muted">No data available.</p>`;
         return;
@@ -802,11 +796,11 @@ function renderDashboard(allPrograms) {
                         
                         <div class="my-auto py-4">
                             <div class="display-4 fw-bold text-success mb-1">${prog.matchScore}%</div>
-                            <small class="text-uppercase fw-bold text-muted">Algorithm Match</small>
+                            <small class="text-uppercase fw-bold text-muted">Algorithm Confidence</small>
                         </div>
                         
                         <div class="mt-auto pt-3 border-top text-muted" style="font-size: 0.85rem;">
-                            <i class="bi bi-hand-index-thumb me-1"></i> Click for Gap Analysis
+                            <i class="bi bi-hand-index-thumb me-1"></i> View Explainable Logic (XAI)
                         </div>
                     </div>
                 </div>
@@ -822,8 +816,8 @@ function renderDashboard(allPrograms) {
                 <tr>
                     <th>Rank</th>
                     <th>Program</th>
-                    <th>Match Score</th>
-                    <th>Colleges</th>
+                    <th>Confidence Score</th>
+                    <th>Applicable Institutions</th>
                 </tr>
             </thead>
             <tbody>
@@ -835,7 +829,7 @@ function renderDashboard(allPrograms) {
                 <td class="fw-bold text-muted">#${index + 1}</td>
                 <td class="fw-bold text-primary">${prog.programName}</td>
                 <td><span class="badge bg-success fs-6">${prog.matchScore}%</span></td>
-                <td style="font-size: 0.85rem;"><i class="bi bi-building"></i> ${prog.colleges.length} Institutions</td>
+                <td style="font-size: 0.85rem;"><i class="bi bi-building"></i> ${prog.colleges.length} Locations</td>
             </tr>
         `;
     });
@@ -849,20 +843,20 @@ function openProgramDetails(progId) {
     if (!prog) return;
 
     document.getElementById('detail-program-name').innerText = prog.programName;
-    document.getElementById('detail-match-score').innerText = `${prog.matchScore}% Overall Match`;
+    document.getElementById('detail-match-score').innerText = `${prog.matchScore}% Composite Match`;
 
     let matchedTraits = currentGlobalRIASEC.filter(trait => prog.reqRiasec.includes(trait));
     let psychText = matchedTraits.length > 0 
-        ? `This program requires <strong>${prog.reqRiasec.join(', ')}</strong> traits. Your profile strongly aligns with: <span class="text-primary fw-bold">${matchedTraits.join(', ')}</span>.` 
-        : `This program requires <strong>${prog.reqRiasec.join(', ')}</strong> traits. Your profile relies on secondary/tertiary overlap.`;
+        ? `This program correlates with <strong>${prog.reqRiasec.join(', ')}</strong> psychometrics. Profile indicates strong intersection with: <span class="text-primary fw-bold">${matchedTraits.join(', ')}</span>.` 
+        : `This program correlates with <strong>${prog.reqRiasec.join(', ')}</strong> psychometrics. Profile indicates secondary parameter alignment.`;
     document.getElementById('detail-xai-psych').innerHTML = psychText;
 
-    document.getElementById('detail-xai-skills').innerHTML = `Your foundational and cross-functional test scores show high readiness for the core required competencies: <strong>${prog.reqSkills.join(', ')}</strong>.`;
+    document.getElementById('detail-xai-skills').innerHTML = `Foundational and specialized evaluation denotes systemic readiness for the targeted competencies: <strong>${prog.reqSkills.join(', ')}</strong>.`;
 
     let collegeListHTML = '';
     prog.colleges.forEach((c, index) => {
         let isTop = index === 0 ? 'border-primary border-2 bg-white' : 'bg-light';
-        let badge = index === 0 ? `<span class="badge bg-primary float-end">Best Fit</span>` : '';
+        let badge = index === 0 ? `<span class="badge bg-primary float-end">Optimal Context</span>` : '';
         
         collegeListHTML += `
             <div class="list-group-item ${isTop} py-3">
@@ -884,12 +878,11 @@ function openProgramDetails(progId) {
 }
 
 // ==========================================
-// 🛠️ DEV CHEAT CODE: CTRL + SHIFT + U
+// 13. DEVELOPMENT UTILITY: FAST FORWARD
 // ==========================================
 document.addEventListener('keydown', (e) => {
-    // Triggers only if you press Ctrl, Shift, and U all at the same time
     if (e.ctrlKey && e.shiftKey && e.key === 'U') {
-        if (!questionBank) return console.warn("Databases not loaded yet!");
+        if (!questionBank) return console.warn("Databases pending load.");
         
         ['phaseA', 'phaseB', 'phaseC'].forEach((phase, idx) => {
             let bank = [questionBank.phaseA_interests, questionBank.phaseB_basic_skills, questionBank.phaseC_cross_skills][idx];
@@ -900,9 +893,23 @@ document.addEventListener('keydown', (e) => {
         renderPage(13);
         updateTrackerUI();
         
-        console.log("🚀 GOD MODE ACTIVATED: Test Auto-Filled!");
-        
-        // Auto-scroll to the bottom so you can just click Execute
+        console.log("Dev execution: Assessment populated via simulated input.");
         window.scrollTo(0, document.body.scrollHeight);
     }
 });
+
+// ==========================================
+// 14. ADMINISTRATIVE PORTAL ROUTING
+// ==========================================
+const secretLogo = document.getElementById('secret-admin-logo');
+
+if (secretLogo) {
+    secretLogo.addEventListener('click', function(event) {
+        if (event.detail === 3) {
+            this.style.transform = "scale(0)";
+            setTimeout(() => {
+                window.location.href = 'counselor.html';
+            }, 300); 
+        }
+    });
+}

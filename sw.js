@@ -24,6 +24,12 @@ self.addEventListener('install', (e) => {
 
 // Fetch Event (Allows app to load from cache)
 self.addEventListener('fetch', (e) => {
+  if (e.request.url.includes('firestore.googleapis.com') || 
+        e.request.url.includes('counselor.html') || 
+        e.request.url.includes('counselor.js')) {
+        return;
+    }
+
   e.respondWith(
     caches.match(e.request).then((response) => {
       return response || fetch(e.request);
