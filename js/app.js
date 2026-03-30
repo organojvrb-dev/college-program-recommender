@@ -305,14 +305,6 @@ function renderPage(page) {
     if (page === totalPages) {
         btnNext.innerText = "Finish Assessment";
         btnNext.classList.replace('btn-primary', 'btn-success');
-        
-        const phaseCAnswers = Object.keys(studentAnswers.phaseC).length;
-        if (phaseCAnswers >= 25) {
-            qContainer.classList.add('d-none');
-            navGroup.classList.add('d-none');
-            fContainer.classList.remove('d-none');
-            window.scrollTo(0, 0); 
-        }
     } else {
         btnNext.innerText = "Next Page";
         btnNext.classList.replace('btn-success', 'btn-primary');
@@ -371,6 +363,13 @@ btnNext.addEventListener('click', () => {
         saveProgress();
         renderPage(currentPage);
         window.scrollTo(0, 0); 
+    } else if (currentPage === totalPages) {
+        saveProgress();
+        document.getElementById('questions-container').classList.add('d-none');
+        document.getElementById('nav-group').classList.add('d-none');
+        document.getElementById('finish-container').classList.remove('d-none');
+        document.getElementById('instructions-container').classList.add('d-none'); 
+        window.scrollTo(0, 0);
     }
 });
 
@@ -607,7 +606,6 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
     const rawGWA = document.getElementById('input-gwa').value;
     const studentGWA = parseFloat(rawGWA);
     
-    // Client-side execution restraint for strict data boundaries
     if (!rawGWA || isNaN(studentGWA) || studentGWA > 100 || studentGWA < 60) {
         alert("System Constraint: Invalid GWA parameter. Input must reside between 60.00 and 100.00.");
         document.getElementById('input-gwa').focus();
@@ -625,41 +623,58 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
     const allStudentSkills = { ...basicScores, ...crossScores };
     const studentTopRIASEC = Object.keys(riasecScores).sort((a,b) => riasecScores[b] - riasecScores[a]).slice(0, 3);
 
+    // Pre-calculate max possible scores for all skills to prevent heavy nested looping
+    const maxSkillScores = {};
+    [...questionBank.phaseB_basic_skills, ...questionBank.phaseC_cross_skills].forEach(q => {
+        if (!maxSkillScores[q.skill_id]) maxSkillScores[q.skill_id] = 0;
+        maxSkillScores[q.skill_id] += 5; // 5 is the max value per question
+    });
+
     let evaluatedPrograms = {}; 
 
     for (const collegeId in collegesDB) {
         const college = collegesDB[collegeId];
         
         college.offerings.forEach(offering => {
-            // Hard Constraints (Filtering Phase)
             if (offering.estimated_tuition <= studentBudget && 
                 offering.minimum_gwa <= studentGWA && 
                 offering.accepted_strands.includes(studentStrand)) {
                 
                 const progId = offering.program_id;
                 
-                // Program Scoring Logic
                 if (!evaluatedPrograms[progId]) {
                     const programData = programsDB[progId];
-                    
                     let riasecMatchScore = 0;
-                    if (studentTopRIASEC.includes(programData.riasec_primary)) riasecMatchScore += 15;
-                    if (studentTopRIASEC.includes(programData.riasec_secondary)) riasecMatchScore += 10;
-                    if (studentTopRIASEC.includes(programData.riasec_tertiary)) riasecMatchScore += 5;
+                    
+                    // Check Program's Primary Trait against student's rank
+                    let primaryIndex = studentTopRIASEC.indexOf(programData.riasec_primary);
+                    if (primaryIndex === 0) riasecMatchScore += 15;      
+                    else if (primaryIndex === 1) riasecMatchScore += 12; 
+                    else if (primaryIndex === 2) riasecMatchScore += 8;  
+
+                    // Check Program's Secondary Trait against student's rank
+                    let secondaryIndex = studentTopRIASEC.indexOf(programData.riasec_secondary);
+                    if (secondaryIndex === 0) riasecMatchScore += 10;
+                    else if (secondaryIndex === 1) riasecMatchScore += 8;
+                    else if (secondaryIndex === 2) riasecMatchScore += 5;
+
+                    // Check Program's Tertiary Trait against student's rank
+                    let tertiaryIndex = studentTopRIASEC.indexOf(programData.riasec_tertiary);
+                    if (tertiaryIndex === 0) riasecMatchScore += 5;
+                    else if (tertiaryIndex === 1) riasecMatchScore += 4;
+                    else if (tertiaryIndex === 2) riasecMatchScore += 3;
                     
                     let totalSkillPercentage = 0;
                     programData.core_skills.forEach(requiredSkill => {
                         let studentScore = allStudentSkills[requiredSkill] || 0;
-                        let basicCount = questionBank.phaseB_basic_skills.filter(q => q.skill_id === requiredSkill).length;
-                        let crossCount = questionBank.phaseC_cross_skills.filter(q => q.skill_id === requiredSkill).length;
-                        let maxPossible = (basicCount + crossCount) * 5; 
+                        let maxPossible = maxSkillScores[requiredSkill] || 0; 
+                        
                         totalSkillPercentage += Math.min(maxPossible > 0 ? (studentScore / maxPossible) * 100 : 0, 100);
                     });
                     
                     let averageSkillMatch = programData.core_skills.length > 0 ? (totalSkillPercentage / programData.core_skills.length) : 0;
                     let finalRiasecWeight = (riasecMatchScore / 30) * 100;
                     
-                    // Final Multi-Criteria Calculation
                     let totalMatch = (finalRiasecWeight * 0.5) + (averageSkillMatch * 0.5);
 
                     evaluatedPrograms[progId] = {
@@ -699,7 +714,6 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
     currentGlobalResults = eligiblePrograms;
     currentGlobalRIASEC = studentTopRIASEC;
 
-    // Instant local render prior to network transaction
     renderDashboard(eligiblePrograms);
 
     const fullID = document.getElementById('input-id-year').value + "-" + document.getElementById('input-id-num').value;
