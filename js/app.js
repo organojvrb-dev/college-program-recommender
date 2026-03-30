@@ -710,6 +710,11 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
     const fullID = document.getElementById('input-id-year').value + "-" + document.getElementById('input-id-num').value;
     const studentFName = document.getElementById('input-fname').value;
     const studentLName = document.getElementById('input-lname').value;
+    const rawPhaseScores = {
+        phaseA: riasecScores,
+        phaseB: basicScores,
+        phaseC: crossScores
+    }
 
     const assessmentResult = {
         firstName: studentFName,
@@ -717,7 +722,10 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
         strand: studentStrand,
         gwa: studentGWA,
         budget: studentBudget,
+        location: studentLocation,
+        type: studentType,
         topRIASEC: studentTopRIASEC,
+        phaseScores: rawPhaseScores,
         timestamp: serverTimestamp(),
         topMatches: eligiblePrograms.slice(0, 3).map(p => ({
             programName: p.programName,

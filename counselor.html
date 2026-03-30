@@ -28,7 +28,12 @@
                 <h4 class="mt-3 mb-4 fw-bold">GAMS Portal</h4>
                 <p class="text-muted small mb-4">Enter administrative passcode to view analytics.</p>
                 <input type="password" id="input-tier1-pass" class="form-control form-control-lg mb-3 text-center" placeholder="••••••••">
-                <button id="btn-login-tier1" class="btn btn-primary w-100 btn-lg">Access Analytics</button>
+                
+                <button id="btn-login-tier1" class="btn btn-primary w-100 btn-lg mb-3">Access Analytics</button>
+                
+                <a href="index.html" class="text-decoration-none text-muted small d-block custom-escape-link">
+                    <i class="bi bi-arrow-left me-1"></i>Return to Assessment
+                </a>
             </div>
         </div>
     </div>
@@ -55,19 +60,24 @@
 
             <div class="row mb-4">
                 <div class="col-md-4">
-                    <div class="card dashboard-card bg-white p-3 border-start border-primary border-5">
+                    <div class="card dashboard-card bg-white p-3 border-start border-primary border-5" onclick="showStrandDistribution()" style="cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
                         <div class="text-muted small fw-bold text-uppercase">Total Assessed</div>
                         <h2 class="fw-bold mb-0" id="stat-total-students">--</h2>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card dashboard-card bg-white p-3 border-start border-success border-5">
+                    <div class="card dashboard-card bg-white p-3 border-start border-success border-5" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#deepDiveModal" 
+                        style="cursor: pointer; transition: transform 0.2s;" 
+                        onmouseover="this.style.transform='scale(1.02)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="text-muted small fw-bold text-uppercase">Top Recommended Program</div>
-                        <h4 class="fw-bold mb-0 text-truncate" id="stat-top-program">--</h4>
+                        <h2 class="fw-bold mb-0 text-truncate" id="stat-top-program">--</h2>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card dashboard-card bg-white p-3 border-start border-info border-5">
+                    <div class="card dashboard-card bg-white p-3 border-start border-info border-5" onclick="showRiasecHeatmap()" style="cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
                         <div class="text-muted small fw-bold text-uppercase">Dominant RIASEC Trait</div>
                         <h2 class="fw-bold mb-0" id="stat-top-riasec">--</h2>
                     </div>
@@ -135,6 +145,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>Date</th>
+                                <th>Student ID</th>
                                 <th>Student Name</th>
                                 <th>Strand</th>
                                 <th>GWA</th>
