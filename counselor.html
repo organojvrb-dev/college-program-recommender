@@ -77,7 +77,12 @@
             <div class="row mb-5">
                 <div class="col-md-8">
                     <div class="card dashboard-card h-100 p-4">
-                        <h6 class="fw-bold mb-3 text-secondary">Program Recommendation Distribution</h6>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-bold mb-0 text-secondary">Program Distribution (Top 10)</h6>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#deepDiveModal">
+                                <i class="bi bi-list-columns-reverse me-1"></i>View Full List
+                            </button>
+                        </div>
                         <div style="position: relative; height: 300px; width: 100%;">
                             <canvas id="chart-programs"></canvas>
                         </div>
@@ -145,6 +150,31 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="modal fade" id="deepDiveModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-bar-chart-steps me-2"></i>Full Program Distribution</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light sticky-top">
+                            <tr>
+                                <th class="ps-4">Rank</th>
+                                <th>Program Name</th>
+                                <th class="text-center">Student Count</th>
+                                <th class="text-center">% of Batch</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deep-dive-tbody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="xaiModal" tabindex="-1" aria-labelledby="xaiModalLabel" aria-hidden="true">
