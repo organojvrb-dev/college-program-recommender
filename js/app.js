@@ -241,28 +241,19 @@ function renderPage(page) {
         currentPhaseLabel.innerText = "Phase A: Motivation";
         currentPhaseData = questionBank.phaseA_interests;
         phaseKey = 'phaseA';
-        scaleOptions = [
-            {val: 1, text: "Strongly Dislike"},
-            {val: 5, text: "Strongly Like"}
-        ];
+        scaleOptions = ["Strongly Dislike", "Dislike", "Neutral", "Like", "Strongly Like"];
     } else if (page <= 8) {
         currentPhaseLabel.innerText = "Phase B: Foundational Competency";
         currentPhaseData = questionBank.phaseB_basic_skills;
         phaseKey = 'phaseB';
         localPage = page - 6;
-        scaleOptions = [
-            {val: 1, text: "Very Weak"},
-            {val: 5, text: "Exceptional"}
-        ];
+        scaleOptions = ["Very Weak", "Weak", "Average", "Strong", "Exceptional"];
     } else {
         currentPhaseLabel.innerText = "Phase C: Specialized Competency";
         currentPhaseData = questionBank.phaseC_cross_skills;
         phaseKey = 'phaseC';
         localPage = page - 8;
-        scaleOptions = [
-            {val: 1, text: "Beginner"},
-            {val: 5, text: "Expert"}
-        ];
+        scaleOptions = ["Beginner", "Novice", "Intermediate", "Advanced", "Expert"];
     }
 
     let startIndex = (localPage - 1) * questionsPerPage;
@@ -271,23 +262,19 @@ function renderPage(page) {
 
     questionsToShow.forEach((q, index) => {
         let globalQuestionNumber = ((page - 1) * questionsPerPage) + (index + 1);
-        let leftLabel = scaleOptions[0].text;
-        let rightLabel = scaleOptions[1].text;
 
         let bubblesHTML = '';
-        [1, 2, 3, 4, 5].forEach(val => {
+        [1, 2, 3, 4, 5].forEach((val, i) => {
             let isSelected = studentAnswers[phaseKey][q.id] === val ? "active" : "";
-            bubblesHTML += `<div class="bubble ${isSelected}" data-phase="${phaseKey}" data-qid="${q.id}" data-val="${val}"></div>`;
+            let hintText = scaleOptions[i]; 
+            
+            bubblesHTML += `<div class="bubble ${isSelected}" data-phase="${phaseKey}" data-qid="${q.id}" data-val="${val}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="${hintText}"></div>`;
         });
 
         qContainer.innerHTML += `
             <div class="mb-5 question-block">
                 <h5 class="mb-4 text-start fw-bold" style="color: #2b3a4a;">${globalQuestionNumber}. ${q.text}</h5>
                 <div class="bubble-container">
-                    <div class="scale-labels">
-                        <span class="text-danger fw-bold">${leftLabel}</span>
-                        <span class="text-success fw-bold">${rightLabel}</span>
-                    </div>
                     <div class="bubble-group">
                         ${bubblesHTML}
                     </div>
@@ -295,6 +282,10 @@ function renderPage(page) {
             </div>
         `;
     });
+
+    // Initialize Bootstrap Tooltips for the newly generated bubbles
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
     // Update Navigation Progress
     questionCounter.innerText = `Page ${page} of ${totalPages}`;

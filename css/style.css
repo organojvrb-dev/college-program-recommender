@@ -99,12 +99,26 @@
 .bubble:hover { transform: scale(1.3); }
 .bubble.active { transform: scale(1.6); border-color: transparent; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-/* Color Mapping */
-.bubble[data-val="1"]:hover, .bubble[data-val="1"].active { background-color: #ffadad; } 
-.bubble[data-val="2"]:hover, .bubble[data-val="2"].active { background-color: #ffd6d6; } 
-.bubble[data-val="3"]:hover, .bubble[data-val="3"].active { background-color: #e9ecef; } 
-.bubble[data-val="4"]:hover, .bubble[data-val="4"].active { background-color: #d4edda; } 
-.bubble[data-val="5"]:hover, .bubble[data-val="5"].active { background-color: #a3cfbb; } 
+/* Color Mapping - Phase A: Interest (Semantic: Red -> Neutral -> Green) */
+.bubble[data-phase="phaseA"][data-val="1"]:hover, .bubble[data-phase="phaseA"][data-val="1"].active { background-color: #ffadad; } 
+.bubble[data-phase="phaseA"][data-val="2"]:hover, .bubble[data-phase="phaseA"][data-val="2"].active { background-color: #ffd6d6; } 
+.bubble[data-phase="phaseA"][data-val="3"]:hover, .bubble[data-phase="phaseA"][data-val="3"].active { background-color: #e9ecef; } 
+.bubble[data-phase="phaseA"][data-val="4"]:hover, .bubble[data-phase="phaseA"][data-val="4"].active { background-color: #d4edda; } 
+.bubble[data-phase="phaseA"][data-val="5"]:hover, .bubble[data-phase="phaseA"][data-val="5"].active { background-color: #a3cfbb; } 
+
+/* Color Mapping - Phase B: Basic Skills (Sequential: Grey -> Teal) */
+.bubble[data-phase="phaseB"][data-val="1"]:hover, .bubble[data-phase="phaseB"][data-val="1"].active { background-color: #e9ecef; } 
+.bubble[data-phase="phaseB"][data-val="2"]:hover, .bubble[data-phase="phaseB"][data-val="2"].active { background-color: #c6f5e5; } 
+.bubble[data-phase="phaseB"][data-val="3"]:hover, .bubble[data-phase="phaseB"][data-val="3"].active { background-color: #8ef0ce; } 
+.bubble[data-phase="phaseB"][data-val="4"]:hover, .bubble[data-phase="phaseB"][data-val="4"].active { background-color: #48e5b2; } 
+.bubble[data-phase="phaseB"][data-val="5"]:hover, .bubble[data-phase="phaseB"][data-val="5"].active { background-color: #20c997; } 
+
+/* Color Mapping - Phase C: Cross-Functional Skills (Sequential: Grey -> Blue) */
+.bubble[data-phase="phaseC"][data-val="1"]:hover, .bubble[data-phase="phaseC"][data-val="1"].active { background-color: #e9ecef; } 
+.bubble[data-phase="phaseC"][data-val="2"]:hover, .bubble[data-phase="phaseC"][data-val="2"].active { background-color: #cfe2ff; } 
+.bubble[data-phase="phaseC"][data-val="3"]:hover, .bubble[data-phase="phaseC"][data-val="3"].active { background-color: #9ec5fe; } 
+.bubble[data-phase="phaseC"][data-val="4"]:hover, .bubble[data-phase="phaseC"][data-val="4"].active { background-color: #6ea8fe; } 
+.bubble[data-phase="phaseC"][data-val="5"]:hover, .bubble[data-phase="phaseC"][data-val="5"].active { background-color: #0d6efd; }
 
 .scale-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: bold; color: #adb5bd; margin-bottom: 5px; text-transform: uppercase; }
 
