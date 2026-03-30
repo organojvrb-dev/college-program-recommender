@@ -281,8 +281,8 @@ function renderPage(page) {
         });
 
         qContainer.innerHTML += `
-            <div class="mb-5 question-block text-center">
-                <h5 class="mb-3">${globalQuestionNumber}. ${q.text}</h5>
+            <div class="mb-5 question-block">
+                <h5 class="mb-4 text-start fw-bold" style="color: #2b3a4a;">${globalQuestionNumber}. ${q.text}</h5>
                 <div class="bubble-container">
                     <div class="scale-labels">
                         <span class="text-danger fw-bold">${leftLabel}</span>
