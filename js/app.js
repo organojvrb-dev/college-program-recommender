@@ -50,7 +50,7 @@ const questionsPerPage = 5;
 // ==========================================
 function saveProgress() {
     const fullID = document.getElementById('input-id-year').value + "-" + document.getElementById('input-id-num').value;
-    if (!fullID || fullID.length !== 7) return;
+    if (!fullID || fullID.length !== 8) return;
 
     const progressData = {
         answers: studentAnswers,
@@ -152,7 +152,7 @@ inputNum.addEventListener('input', checkStudentId);
 function checkStudentId() {
     if (!studentsDB) return; 
 
-    if (inputYear.value.length === 2 && inputNum.value.length === 4) {
+    if (inputYear.value.length === 2 && inputNum.value.length === 5) {
         let fullID = inputYear.value + "-" + inputNum.value;
         
         if (studentsDB[fullID]) {
