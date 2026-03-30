@@ -1,4 +1,364 @@
 {
+  "23-00001": {
+    "first_name": "Adrian",
+    "last_name": "Salazar",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "23-00002": {
+    "first_name": "Bianca",
+    "last_name": "Delgado",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "23-00003": {
+    "first_name": "Christian",
+    "last_name": "Domingo",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "23-00004": {
+    "first_name": "Diana",
+    "last_name": "Ferrer",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "23-00005": {
+    "first_name": "Edward",
+    "last_name": "Pascual",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "23-00006": {
+    "first_name": "Faith",
+    "last_name": "Navarro",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "23-00007": {
+    "first_name": "Gabriel",
+    "last_name": "Reyes",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "23-00008": {
+    "first_name": "Hannah",
+    "last_name": "Cruz",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "23-00009": {
+    "first_name": "Ivan",
+    "last_name": "Lopez",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "23-00010": {
+    "first_name": "Jade",
+    "last_name": "Castro",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "23-00011": {
+    "first_name": "Kyle",
+    "last_name": "Ramos",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "23-00012": {
+    "first_name": "Lara",
+    "last_name": "Torres",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "23-00013": {
+    "first_name": "Mico",
+    "last_name": "Flores",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "23-00014": {
+    "first_name": "Nina",
+    "last_name": "Garcia",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "23-00015": {
+    "first_name": "Oscar",
+    "last_name": "Villanueva",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "23-00016": {
+    "first_name": "Paula",
+    "last_name": "Aquino",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "23-00017": {
+    "first_name": "Quinn",
+    "last_name": "Diaz",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "23-00018": {
+    "first_name": "Ralph",
+    "last_name": "Herrera",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "23-00019": {
+    "first_name": "Sofia",
+    "last_name": "Moreno",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "23-00020": {
+    "first_name": "Tristan",
+    "last_name": "Castillo",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "23-00021": {
+    "first_name": "Ulysses",
+    "last_name": "Mendoza",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "23-00022": {
+    "first_name": "Vera",
+    "last_name": "Santos",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "23-00023": {
+    "first_name": "Warren",
+    "last_name": "Gutierrez",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "23-00024": {
+    "first_name": "Xena",
+    "last_name": "Fernandez",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "23-00025": {
+    "first_name": "Yuri",
+    "last_name": "Rivera",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "23-00026": {
+    "first_name": "Zane",
+    "last_name": "Gonzales",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "23-00027": {
+    "first_name": "Aileen",
+    "last_name": "Perez",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "23-00028": {
+    "first_name": "Brent",
+    "last_name": "Cruz",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "23-00029": {
+    "first_name": "Celine",
+    "last_name": "Bautista",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "23-00030": {
+    "first_name": "Derek",
+    "last_name": "Diaz",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "22-00001": {
+    "first_name": "Franz",
+    "last_name": "Aguilar",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "22-00002": {
+    "first_name": "Gwen",
+    "last_name": "Cabrera",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "22-00003": {
+    "first_name": "Harold",
+    "last_name": "Espino",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "22-00004": {
+    "first_name": "Irene",
+    "last_name": "Manalo",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "22-00005": {
+    "first_name": "Joshua",
+    "last_name": "Velasco",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "22-00006": {
+    "first_name": "Karen",
+    "last_name": "Soriano",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "22-00007": {
+    "first_name": "Leo",
+    "last_name": "Dizon",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "22-00008": {
+    "first_name": "Maya",
+    "last_name": "Evangelista",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "22-00009": {
+    "first_name": "Nico",
+    "last_name": "Alvarez",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "22-00010": {
+    "first_name": "Olivia",
+    "last_name": "Santiago",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "22-00011": {
+    "first_name": "Patrick",
+    "last_name": "Marquez",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "22-00012": {
+    "first_name": "Queen",
+    "last_name": "Padilla",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "22-00013": {
+    "first_name": "Rico",
+    "last_name": "Villamor",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "22-00014": {
+    "first_name": "Sheila",
+    "last_name": "Natividad",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "22-00015": {
+    "first_name": "Troy",
+    "last_name": "Bautista",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "22-00016": {
+    "first_name": "Una",
+    "last_name": "Pineda",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "22-00017": {
+    "first_name": "Victor",
+    "last_name": "Ocampo",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "22-00018": {
+    "first_name": "Wendy",
+    "last_name": "Salvador",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "22-00019": {
+    "first_name": "Xavier",
+    "last_name": "Luna",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "22-00020": {
+    "first_name": "Yasmin",
+    "last_name": "Rosales",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "22-00021": {
+    "first_name": "Zack",
+    "last_name": "Fajardo",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "22-00022": {
+    "first_name": "Aira",
+    "last_name": "Balagtas",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "22-00023": {
+    "first_name": "Ben",
+    "last_name": "Cuevas",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "22-00024": {
+    "first_name": "Cathy",
+    "last_name": "Delos Reyes",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "22-00025": {
+    "first_name": "Dino",
+    "last_name": "Enriquez",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
+  "22-00026": {
+    "first_name": "Ella",
+    "last_name": "Francisco",
+    "strand": "STEM",
+    "status": "Enrolled"
+  },
+  "22-00027": {
+    "first_name": "Felix",
+    "last_name": "Galang",
+    "strand": "ABM",
+    "status": "Enrolled"
+  },
+  "22-00028": {
+    "first_name": "Grace",
+    "last_name": "Hernandez",
+    "strand": "HUMSS",
+    "status": "Enrolled"
+  },
+  "22-00029": {
+    "first_name": "Hector",
+    "last_name": "Ignacio",
+    "strand": "GAS",
+    "status": "Enrolled"
+  },
+  "22-00030": {
+    "first_name": "Isla",
+    "last_name": "Jimenez",
+    "strand": "TVL",
+    "status": "Enrolled"
+  },
   "24-00001": {
     "first_name": "Juan",
     "last_name": "Dela Cruz",
@@ -39,7 +399,7 @@
     "first_name": "Carlo",
     "last_name": "Mendoza",
     "strand": "ABM",
-    "status": "Dropped"
+    "status": "Enrolled"
   },
   "24-00008": {
     "first_name": "Bea",
@@ -81,7 +441,7 @@
     "first_name": "Trisha",
     "last_name": "Gutierrez",
     "strand": "HUMSS",
-    "status": "Dropped"
+    "status": "Enrolled"
   },
   "24-00015": {
     "first_name": "Ethan",
@@ -117,7 +477,7 @@
     "first_name": "Eli",
     "last_name": "Cruz",
     "strand": "TVL",
-    "status": "Dropped"
+    "status": "Enrolled"
   },
   "24-00021": {
     "first_name": "Ava",
@@ -183,7 +543,7 @@
     "first_name": "Joseph Ver Remar",
     "last_name": "Organo",
     "strand": "STEM",
-    "status":"Enrolled"
+    "status": "Enrolled"
   },
   "22-00330": {
     "first_name": "Almir Jude",

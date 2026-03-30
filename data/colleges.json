@@ -403,5 +403,321 @@
         "accepted_strands": ["STEM"]
       }
     ]
+  },
+  "COL_016": {
+    "institution_name": "University of Batangas",
+    "location": "Batangas City",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_001",
+        "estimated_tuition": 50000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_002",
+        "estimated_tuition": 48000,
+        "minimum_gwa": 84,
+        "accepted_strands": ["STEM", "TVL"]
+      },
+      {
+        "program_id": "PRG_011",
+        "estimated_tuition": 45000,
+        "minimum_gwa": 82,
+        "accepted_strands": ["HUMSS"]
+      }
+    ]
+  },
+
+  "COL_017": {
+    "institution_name": "Batangas Eastern Colleges",
+    "location": "Lemery, Batangas",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_013",
+        "estimated_tuition": 35000,
+        "minimum_gwa": 80,
+        "accepted_strands": ["HUMSS", "GAS"]
+      },
+      {
+        "program_id": "PRG_003",
+        "estimated_tuition": 40000,
+        "minimum_gwa": 82,
+        "accepted_strands": ["ABM"]
+      }
+    ]
+  },
+
+  "COL_018": {
+    "institution_name": "First Asia Institute of Technology and Humanities",
+    "location": "Tanauan, Batangas",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_001",
+        "estimated_tuition": 60000,
+        "minimum_gwa": 87,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_046",
+        "estimated_tuition": 65000,
+        "minimum_gwa": 88,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+
+  "COL_019": {
+    "institution_name": "San Pablo Colleges",
+    "location": "San Pablo City, Laguna",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_008",
+        "estimated_tuition": 60000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_006",
+        "estimated_tuition": 55000,
+        "minimum_gwa": 84,
+        "accepted_strands": ["HUMSS"]
+      }
+    ]
+  },
+
+  "COL_020": {
+    "institution_name": "Laguna State Polytechnic University",
+    "location": "San Pablo City, Laguna",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_026",
+        "estimated_tuition": 0,
+        "minimum_gwa": 82,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_028",
+        "estimated_tuition": 0,
+        "minimum_gwa": 84,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_013",
+        "estimated_tuition": 0,
+        "minimum_gwa": 83,
+        "accepted_strands": ["HUMSS"]
+      }
+    ]
+  },
+
+  "COL_021": {
+    "institution_name": "University of Rizal System",
+    "location": "Morong, Rizal",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_013",
+        "estimated_tuition": 0,
+        "minimum_gwa": 82,
+        "accepted_strands": ["HUMSS"]
+      },
+      {
+        "program_id": "PRG_020",
+        "estimated_tuition": 0,
+        "minimum_gwa": 83,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+
+  "COL_022": {
+    "institution_name": "Southern Luzon State University",
+    "location": "Lucban, Quezon",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_026",
+        "estimated_tuition": 0,
+        "minimum_gwa": 82,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_020",
+        "estimated_tuition": 0,
+        "minimum_gwa": 83,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+
+  "COL_023": {
+    "institution_name": "Cavite State University - Imus Campus",
+    "location": "Imus, Cavite",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_002",
+        "estimated_tuition": 0,
+        "minimum_gwa": 83,
+        "accepted_strands": ["STEM", "TVL"]
+      },
+      {
+        "program_id": "PRG_024",
+        "estimated_tuition": 0,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+
+  "COL_024": {
+    "institution_name": "Emilio Aguinaldo College - Cavite",
+    "location": "Dasmariñas, Cavite",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_008",
+        "estimated_tuition": 70000,
+        "minimum_gwa": 87,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_019",
+        "estimated_tuition": 68000,
+        "minimum_gwa": 86,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+
+  "COL_025": {
+    "institution_name": "STI College Batangas",
+    "location": "Batangas City",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_002",
+        "estimated_tuition": 45000,
+        "minimum_gwa": 82,
+        "accepted_strands": ["STEM", "TVL"]
+      },
+      {
+        "program_id": "PRG_024",
+        "estimated_tuition": 48000,
+        "minimum_gwa": 83,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+  "COL_026": {
+    "institution_name": "Batangas State University - Lipa Campus",
+    "location": "Lipa City, Batangas",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_002",
+        "estimated_tuition": 0,
+        "minimum_gwa": 84,
+        "accepted_strands": ["STEM", "TVL"]
+      },
+      {
+        "program_id": "PRG_028",
+        "estimated_tuition": 0,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+
+  "COL_027": {
+    "institution_name": "University of Perpetual Help System DALTA - Calamba",
+    "location": "Calamba, Laguna",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_008",
+        "estimated_tuition": 65000,
+        "minimum_gwa": 85,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_018",
+        "estimated_tuition": 70000,
+        "minimum_gwa": 86,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+
+  "COL_028": {
+    "institution_name": "San Sebastian College - Recoletos de Cavite",
+    "location": "Cavite City, Cavite",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_006",
+        "estimated_tuition": 50000,
+        "minimum_gwa": 83,
+        "accepted_strands": ["HUMSS"]
+      },
+      {
+        "program_id": "PRG_013",
+        "estimated_tuition": 48000,
+        "minimum_gwa": 82,
+        "accepted_strands": ["HUMSS", "GAS"]
+      }
+    ]
+  },
+
+  "COL_029": {
+    "institution_name": "Manuel S. Enverga University Foundation",
+    "location": "Lucena City, Quezon",
+    "institution_type": "Private",
+    "offerings": [
+      {
+        "program_id": "PRG_003",
+        "estimated_tuition": 55000,
+        "minimum_gwa": 84,
+        "accepted_strands": ["ABM"]
+      },
+      {
+        "program_id": "PRG_008",
+        "estimated_tuition": 65000,
+        "minimum_gwa": 86,
+        "accepted_strands": ["STEM"]
+      },
+      {
+        "program_id": "PRG_020",
+        "estimated_tuition": 52000,
+        "minimum_gwa": 83,
+        "accepted_strands": ["STEM"]
+      }
+    ]
+  },
+
+  "COL_030": {
+    "institution_name": "Dalubhasaan ng Lungsod ng Lucena",
+    "location": "Lucena City, Quezon",
+    "institution_type": "Public",
+    "offerings": [
+      {
+        "program_id": "PRG_013",
+        "estimated_tuition": 0,
+        "minimum_gwa": 80,
+        "accepted_strands": ["HUMSS", "GAS"]
+      },
+      {
+        "program_id": "PRG_004",
+        "estimated_tuition": 0,
+        "minimum_gwa": 81,
+        "accepted_strands": ["ABM", "GAS"]
+      }
+    ]
   }
 }
