@@ -26,13 +26,18 @@ let chartRiasecInstance = null;
 let xaiRadarInstance = null;
 let previousStudentCount = 0;
 let programsDB = null;
+let collegesDB = null; // NEW: Added to support XAI Constraint checking
 
 async function loadDatabases() {
     try {
-        const res = await fetch('./data/programs.json');
-        programsDB = await res.json();
+        const [progRes, collRes] = await Promise.all([
+            fetch('./data/programs.json'),
+            fetch('./data/colleges.json')
+        ]);
+        programsDB = await progRes.json();
+        collegesDB = await collRes.json();
     } catch (error) {
-        console.error("System Error: Could not load programs.json", error);
+        console.error("System Error: Could not load databases", error);
     }
 }
 loadDatabases();
@@ -367,36 +372,81 @@ window.viewStudentProfile = function(studentId) {
 
     // --- Deep XAI Logic transplanted from app.js ---
     const programsContainer = document.getElementById('xai-programs-container');
-    programsContainer.innerHTML = '<h6 class="fw-bold text-muted mt-4 mb-3">SAW ALGORITHM BREAKDOWN:</h6>';
+    programsContainer.innerHTML = '<h6 class="fw-bold text-muted mt-4 mb-3">MULTI-CRITERIA DECISION ANALYSIS (MCDA):</h6>';
 
-    if (student.topMatches && programsDB) {
+    if (student.topMatches && programsDB && collegesDB) {
         student.topMatches.forEach((match, index) => {
             const score = match.matchScore;
             
-            // 1. LOOKUP: Find the matching program in your JSON database by its name
-            const programDetails = Object.values(programsDB).find(p => p.program_name === match.programName);
+            // 1. LOOKUP: Find program ID and details
+            const progId = Object.keys(programsDB).find(k => programsDB[k].program_name === match.programName);
+            const programDetails = programsDB[progId];
             
-            // 2. EXTRACT: Pull the specific requirements, or use fallbacks if something breaks
+            // 2. FIND BEST COLLEGE MATCH (Constraint Satisfaction & Preferences)
+            let bestCollege = null;
+            let bestScore = -1;
+            let bestTuition = 0;
+            let tuitionStatus = "Over Budget";
+            let locationStatus = "Outside Preference";
+
+            Object.values(collegesDB).forEach(college => {
+                const offering = college.offerings.find(o => o.program_id === progId);
+                if (offering) {
+                    // HARD CONSTRAINTS (Must pass)
+                    const isAffordable = offering.estimated_tuition <= student.budget;
+                    const meetsStrand = offering.accepted_strands.includes(student.strand);
+                    
+                    if (isAffordable && meetsStrand) {
+                        // SOFT PREFERENCES (Tie-breakers)
+                        let prefScore = 0;
+                        const isLocal = student.location === "Any" || college.location === student.location;
+                        const isTypeMatch = student.type === "Any" || college.institution_type === student.type;
+                        
+                        if (isLocal) prefScore += 2;
+                        if (isTypeMatch) prefScore += 1;
+
+                        // Pick the highest scoring college (or cheapest if tie)
+                        if (prefScore > bestScore || (prefScore === bestScore && offering.estimated_tuition < bestTuition) || bestCollege === null) {
+                            bestCollege = college;
+                            bestScore = prefScore;
+                            bestTuition = offering.estimated_tuition;
+
+                            tuitionStatus = `₱${offering.estimated_tuition.toLocaleString()} (Within Budget)`;
+                            locationStatus = isLocal ? `${college.location}` : `${college.location} (Alternative)`;
+                        }
+                    }
+                }
+            });
+
+            // 3. EXTRACT SKILLS & TRAITS
             let psychTraits = programDetails ? `${programDetails.riasec_primary}, ${programDetails.riasec_secondary}, ${programDetails.riasec_tertiary}` : student.topRIASEC.join(', ');
-            let skillList = programDetails ? programDetails.core_skills.join(', ') : "targeted technical skills";
+            let skillList = programDetails ? programDetails.core_skills.slice(0, 4).join(', ') : "targeted technical skills";
 
             let reasonHTML = '';
             
+            // NEW: Institutional Alignment Block
+            reasonHTML += `
+                <div class="mb-3 p-2 bg-white rounded border-start border-primary border-3" style="font-size: 0.85rem;">
+                    <div class="fw-bold text-primary mb-1"><i class="bi bi-bank me-1"></i>Top Institutional Alignment:</div>
+                    <div><strong>${bestCollege ? bestCollege.institution_name : "No exact local/budget match. Displaying highest aptitude alternative."}</strong></div>
+                    <div class="text-muted small">Tuition: ${tuitionStatus} | Loc: ${locationStatus}</div>
+                </div>`;
+            
             reasonHTML += `<div class="mb-2" style="font-size: 0.85rem;">
-                              <i class="bi bi-person-check text-primary me-1"></i> 
-                              <strong>Psychometrics:</strong> This program correlates with <span class="text-primary fw-bold">${psychTraits}</span>. Profile indicates strong intersection.
+                              <i class="bi bi-person-check text-info me-1"></i> 
+                              <strong>Psychometrics:</strong> This program correlates with <span class="text-info fw-bold">${psychTraits}</span>. Profile indicates strong intersection.
                            </div>`;
                            
             reasonHTML += `<div style="font-size: 0.85rem;">
                               <i class="bi bi-tools text-success me-1"></i> 
-                              <strong>Competency:</strong> Foundational and specialized evaluation denotes systemic readiness for the targeted competencies: <strong>${skillList}</strong>.
+                              <strong>Competency:</strong> Systemic readiness detected for targeted competencies: <strong>${skillList}</strong>.
                            </div>`;
 
             programsContainer.innerHTML += `
                 <div class="card border-0 bg-light shadow-sm mb-3 p-3">
                     <div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2">
                         <strong class="text-dark fs-6">${index + 1}. ${match.programName}</strong>
-                        <span class="badge rounded-pill bg-white text-primary border border-primary fs-6">${score}% Confidence</span>
+                        <span class="badge rounded-pill bg-white text-primary border border-primary fs-6">${score}% Match</span>
                     </div>
                     ${reasonHTML}
                 </div>`;
@@ -692,4 +742,38 @@ window.showRiasecHeatmap = function() {
     // 5. Show the Modal
     const modalInstance = new bootstrap.Modal(document.getElementById('heatmapModal'));
     modalInstance.show();
+};
+
+// ==========================================
+// 13. COUNSELOR PERSISTENCE (SAVE NOTES)
+// ==========================================
+window.saveCounselorNotes = async function(studentId) {
+    const notesArea = document.getElementById('input-counselor-notes');
+    if (!notesArea) return;
+
+    const newNotes = notesArea.value;
+    const studentRef = doc(db, "results", studentId);
+
+    try {
+        // Update only the counselorNotes field in Firebase
+        await updateDoc(studentRef, {
+            counselorNotes: newNotes
+        });
+
+        // Visual feedback
+        const saveBtn = document.querySelector('button[onclick*="saveCounselorNotes"]');
+        const originalText = saveBtn.innerHTML;
+        saveBtn.innerHTML = '<i class="bi bi-check-lg me-1"></i>Saved!';
+        saveBtn.classList.replace('btn-success', 'btn-primary');
+        
+        setTimeout(() => {
+            saveBtn.innerHTML = originalText;
+            saveBtn.classList.replace('btn-primary', 'btn-success');
+        }, 2000);
+
+        console.log(`📝 Notes updated for student: ${studentId}`);
+    } catch (error) {
+        console.error("Error saving notes:", error);
+        alert("Failed to save notes. Please check your connection.");
+    }
 };
