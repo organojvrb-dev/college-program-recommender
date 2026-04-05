@@ -384,8 +384,8 @@ btnStart.addEventListener('click', async function() {
     const gwaVal = parseFloat(document.getElementById('input-gwa').value);
     const strandVal = document.getElementById('input-strand').value;
 
-    if (!yearVal || !numVal || yearVal.length !== 2 || numVal.length !== 4) {
-        alert("Validation Error: Please enter a complete Student ID (XX-XXXX).");
+    if (!yearVal || !numVal || yearVal.length !== 2 || numVal.length !== 5) {
+        alert("Validation Error: Please enter a complete Student ID (XX-XXXXX).");
         document.getElementById('input-id-year').focus();
         return; 
     }
