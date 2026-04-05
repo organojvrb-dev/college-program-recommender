@@ -378,14 +378,35 @@ btnStart.addEventListener('click', async function() {
         alert("System initialization incomplete. Please wait.");
         return;
     }
-    
-    const fullID = document.getElementById('input-id-year').value + "-" + document.getElementById('input-id-num').value;
+
+    const yearVal = document.getElementById('input-id-year').value;
+    const numVal = document.getElementById('input-id-num').value;
+    const gwaVal = parseFloat(document.getElementById('input-gwa').value);
+    const strandVal = document.getElementById('input-strand').value;
+
+    if (!yearVal || !numVal || yearVal.length !== 2 || numVal.length !== 4) {
+        alert("Validation Error: Please enter a complete Student ID (XX-XXXX).");
+        document.getElementById('input-id-year').focus();
+        return; 
+    }
+
+    if (!strandVal || strandVal === "Student Not Found") {
+        alert("Validation Error: Student ID not recognized in the institutional database.");
+        return;
+    }
+
+    if (isNaN(gwaVal) || gwaVal < 70 || gwaVal > 100) {
+        alert("Validation Error: Please enter a valid General Weighted Average (70.00 - 100.00).");
+        document.getElementById('input-gwa').focus();
+        return;
+    }
+
+    const fullID = yearVal + "-" + numVal;
     
     const originalText = btnStart.innerText;
     btnStart.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Syncing Profile...`;
     btnStart.disabled = true;
 
-    // Attempt to restore session from Firestore
     try {
         const docSnap = await getDoc(doc(db, "progress", fullID));
 
