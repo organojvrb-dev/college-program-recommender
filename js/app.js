@@ -689,6 +689,16 @@ document.getElementById('btn-calculate').addEventListener('click', () => {
                     
                     let totalMatch = (finalRiasecWeight * 0.5) + (averageSkillMatch * 0.5);
 
+                    if (programData.program_name === "BS Architecture" || programData.program_name === "BS Mechanical Engineering") {
+                        console.log(`\n=== REAL MATH FOR: ${programData.program_name} ===`);
+                        console.log(`RIASEC Raw Score: ${riasecMatchScore} out of 30`);
+                        console.log(`RIASEC Normalized (Rij): ${(riasecMatchScore / 30).toFixed(3)}`);
+                        console.log(`Skills Raw Score: ${averageSkillMatch.toFixed(2)}%`);
+                        console.log(`Skills Normalized (Rij): ${(averageSkillMatch / 100).toFixed(3)}`);
+                        console.log(`Final Vi Score: ${(totalMatch / 100).toFixed(3)}`);
+                        console.log(`=========================================\n`);
+                    }
+
                     evaluatedPrograms[progId] = {
                         id: progId,
                         programName: programData.program_name,
